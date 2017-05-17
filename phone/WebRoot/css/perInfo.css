@@ -1,0 +1,228 @@
+@CHARSET "UTF-8";
+body {
+	font-family: 黑体;
+	font-size: 15px;
+	color: #696969;
+}
+
+body .black {
+	font-weight: bold;
+}
+
+a {
+	font-family: 黑体;
+	color: #696969;
+	text-decoration: none;
+}
+
+a:link {
+	text-decoration: none;
+	color: black; /* 指正常的未被访问过的链接*/
+}
+
+a:visited {
+	text-decoration: none; /*指已经访问过的链接*/
+}
+
+a:hover {
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold; /*指鼠标在链接*/
+}
+a:hover .cart{
+	text-decoration: none;
+	font-size: 55px;
+	font-weight: bold; /*指鼠标在链接*/
+}
+a:active {
+	color: none; /*指正在点的链接*/
+}
+
+.hr0 {
+	height: 1px;
+	border: none;
+	border-top: 1px dashed #1E90FF;
+}
+
+.hr1 {
+	height: 1px;
+	border: none;
+	border-top: 1px solid #000;
+}
+
+.hr2 {
+	height: 3px;
+	border: none;
+	border-top: 3px double #6B8E23;
+}
+
+.hr3 {
+	height: 5px;
+	border: none;
+	border-top: 5px ridge #45D6D8;
+}
+
+.hr4 {
+	height: 10px;
+	border: none;
+	border-top: 10px groove #FF8C00;
+}
+
+.aa {
+	width: 200px;
+	height: 40px;
+	boder: solid 1px #000000;
+}
+
+.btn {
+	width: 28px;
+	height: 28px;
+	background-image: url(../images/perInfo/search.png);
+	background-repeat: no-repeat;
+	/*border: 1px; 去边框*/
+	position: absolute;
+	/*font-size: 30px;/*字体大小*/
+	/*color: white; /*字体颜色*/
+	border: 1px solid #dfdfdf;
+	height: 38px;
+	width: 384px;
+	font-size: 11pt;
+	color: #a9a9a9;
+	-moz-user-select: none;
+	text-indent: 14px;
+}
+.button{
+	background-repeat: no-repeat;
+	/*border: 1px; 去边框*/
+
+	/*font-size: 30px;/*字体大小*/
+	/*color: white; /*字体颜色*/
+	border: 1px solid #dfdfdf;
+	height: 38px;
+	width: 154px;
+	font-size: 25px;
+	align:center;
+	color: #a9a9a9;
+	-moz-user-select: none;
+
+}
+.button:hover{
+	background-color: #FF6600;
+	font-color: #FF6600;
+}
+.btn_video {
+	background-color: #decb93;
+	color: white;
+}
+
+#search {
+	border: 1px solid #dfdfdf;
+	height: 42px;
+	width: 350px;
+	font-size: 11pt;
+	color: #a9a9a9;
+	-moz-user-select: none;
+	text-indent: 14px;
+}
+#search2 {
+	border: 1px solid #dfdfdf;
+	height: 42px;
+	width: 350px;
+	font-size: 11pt;
+	color: #a9a9a9;
+	-moz-user-select: none;
+	text-indent: 14px;
+}
+#search3 {
+	border: 1px solid #dfdfdf;
+	height: 42px;
+	width: 350px;
+	font-size: 11pt;
+	color: #a9a9a9;
+	-moz-user-select: none;
+	text-indent: 14px;
+}
+.form
+        {
+            margin:0 auto;
+            width:300px;
+           
+            top:100px;
+            right:250px;
+            }
+            
+#glass a {	
+	top: 0px;
+	right: -126px;
+	border: 1px solid #dfdfdf;
+	width: 40px;
+	height: 40px;
+	display: block;
+	background: url(glass_two.png);
+}
+#glass{	
+	top: 0px;
+	right: -126px;
+	border: 1px solid #dfdfdf;
+	width: 40px;
+	height: 40px;
+	display: block;
+	background: url(glass_two.png);
+}
+#glass:hover {
+	background-position: 0 -40px;
+	background-color: #FF6600;
+}
+
+.btn:hover {
+	background-color: #FF6600;
+	color: #FF6600;
+}
+
+.btn_video:active {
+	background-color: #90772d;
+	color: #fff;
+	border: 1px solid #fdf7e7;
+}
+
+.btn_video:focus {
+	color: #fff;
+}
+.text_address{
+	 font-size: 12px;
+	 font-family: 黑体;
+	 color: #696969;
+	 text-align:center;
+	 height:150px;
+	 width:250px; 
+	 border-color:#DDDDDD;
+	 background-color:#ffffff;
+	 background-image: url(../images/perInfo/addressold.png);
+	 background-repeat: no-repeat;
+	 background-position: 4.5em;
+}
+.text_address:hover{
+	 background-image: url(../images/perInfo/address.png);
+	 background-repeat: no-repeat;
+
+}
+a#light {
+	color: #FF6600;
+}
+input[type=checkbox]{
+        -webkit-appearance: none;
+        width: 25px;
+        height: 25px;
+        margin: 0;
+        background: #fff;
+        border: 1px solid #DDDDDD;
+}
+
+.checkboxOne:checked{
+    background-color: #FF6600;
+    border: 1px solid #F47164;
+}
+input[type=checkbox]:hover {
+        outline: none;
+        border-color: green;
+}

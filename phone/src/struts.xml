@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="phone" extends="struts-default" namespace="/">
+		<action name="Account_*" class="AccountAction" method="{1}">
+			<result name="perCenter">/perInfo/jsp/perCenter/perCenter.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="failure">/view/failure.jsp</result>
+			<result name="myOrder">/perInfo/jsp/order/myOrder.jsp</result>
+			<result name="comment">/perInfo/jsp/order/comment.jsp</result>
+			<result name="commented">/perInfo/jsp/order/commented.jsp</result>
+			<result name="commentClose">/perInfo/jsp/order/commentClose.jsp</result>
+			<result name="waitComment">/perInfo/jsp/order/comment.jsp</result>
+			<result name="news">/perInfo/jsp/perCenter/news.jsp</result>
+			<result name="discount">/perInfo/jsp/perCenter/discount.jsp</result>
+			<result name="address">/perInfo/jsp/perCenter/address.jsp</result>
+			<result name="getUserInfo">/perInfo/jsp/account/perInfo.jsp</result>
+			<result name="password">/perInfo/jsp/account/password.jsp</result>
+			<result name="passwordUpdate">/perInfo/jsp/account/password2.jsp</result>
+			<result name="passwordUpdate2">/perInfo/jsp/account/password.jsp</result>
+			<result name="waitPay">/perInfo/jsp/order/waitPay.jsp</result>
+			<result name="waitConfirm">/perInfo/jsp/order/waitConfirm.jsp</result>
+			<result name="closed">/perInfo/jsp/order/closed.jsp</result>
+			<result name="update">/perInfo/jsp/account/perInfo.jsp</result>
+			<result name="passwordError" type="redirectAction">Account_perCenter.action</result>
+			<result name="loginSuccess" type="redirectAction">Account_perCenter.action</result>
+		</action>
+		
+		<action name="Cart_*" class="CartAction" method="{1}">
+		<result name="get">/cart/cart.jsp</result>
+		<result name="add">/view/failure.jsp</result>
+		<result name="error">/view/failure.jsp</result>
+		<result name="clear" type="redirectAction">Cart_get.action</result>		
+		<result name="delete" type="redirectAction">Cart_get.action</result>
+		</action>	
+	</package>
+</struts>
