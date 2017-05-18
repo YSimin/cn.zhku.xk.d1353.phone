@@ -104,12 +104,7 @@
 										<s:property value="#p.price"></s:property>
 									</td>
 									<td>
-										<a><input id="min" name="" type="button" value="-" />
-										</a>
-										<input id="text_box" name="" type="text" value="1" 
-											style="width: 30px; text-align: center" />
-										<a><input id="add" name="" type="button" value="+" />
-										</a>
+										1
 									</td>
 									<td>
 										<s:property value="#p.price"></s:property>

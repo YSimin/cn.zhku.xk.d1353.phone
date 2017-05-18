@@ -58,7 +58,7 @@
 					}
 				%>
 				<div class="top-b2">
-				<a href="../jsp/addcart.jsp"><input type="button" class="myButton" value="加入购物车" "></a>
+				<a href="../jsp/addcart.jsp"><input type="button" class="myButton" value="加入购物车" ></a>
 				</div>
 				<div >
 
