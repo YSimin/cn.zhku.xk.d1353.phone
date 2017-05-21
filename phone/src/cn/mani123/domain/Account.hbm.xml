@@ -34,11 +34,20 @@
         <property name="orderId" type="java.lang.Integer">
             <column name="order_id" />
         </property>
-        <set name="orders" inverse="true" lazy="false" >
+        <property name="user" type="java.lang.Integer">
+            <column name="user" />
+        </property>
+        <set name="orders" inverse="true">
             <key>
                 <column name="account_id" not-null="true" />
             </key>
             <one-to-many class="cn.mani123.domain.Order" />
+        </set>
+        <set name="shops" inverse="true">
+            <key>
+                <column name="saler_id" />
+            </key>
+            <one-to-many class="cn.mani123.domain.Shop" />
         </set>
     </class>
 </hibernate-mapping>

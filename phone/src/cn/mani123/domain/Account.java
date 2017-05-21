@@ -1,5 +1,6 @@
-// default package
 package cn.mani123.domain;
+// default package
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +10,7 @@ import java.util.Set;
  * AbstractAccount entity provides the base persistence definition of the Account entity. @author MyEclipse Persistence Tools
  */
 
-public class Account {
+public class Account{
 
 
     // Fields    
@@ -23,7 +24,9 @@ public class Account {
      private String email;
      private String telephone;
      private Integer orderId;
+     private Integer user;
      private Set orders = new HashSet(0);
+     private Set shops = new HashSet(0);
 
 
     // Constructors
@@ -34,7 +37,7 @@ public class Account {
 
     
     /** full constructor */
-    public Account(String username, String password, String address, Date birthday, String sex, String email, String telephone, Integer orderId, Set orders) {
+    public Account(String username, String password, String address, Date birthday, String sex, String email, String telephone, Integer orderId, Integer user, Set orders, Set shops) {
         this.username = username;
         this.password = password;
         this.address = address;
@@ -43,7 +46,9 @@ public class Account {
         this.email = email;
         this.telephone = telephone;
         this.orderId = orderId;
+        this.user = user;
         this.orders = orders;
+        this.shops = shops;
     }
 
    
@@ -121,12 +126,28 @@ public class Account {
         this.orderId = orderId;
     }
 
+    public Integer getUser() {
+        return this.user;
+    }
+    
+    public void setUser(Integer user) {
+        this.user = user;
+    }
+
     public Set getOrders() {
         return this.orders;
     }
     
     public void setOrders(Set orders) {
         this.orders = orders;
+    }
+
+    public Set getShops() {
+        return this.shops;
+    }
+    
+    public void setShops(Set shops) {
+        this.shops = shops;
     }
    
 

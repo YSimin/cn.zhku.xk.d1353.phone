@@ -42,6 +42,7 @@
 				<value>cn/mani123/domain/Account.hbm.xml</value>
 				<value>cn/mani123/domain/Product.hbm.xml</value>
 				<value>cn/mani123/domain/Order.hbm.xml</value>
+				<value>cn/mani123/domain/Shop.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

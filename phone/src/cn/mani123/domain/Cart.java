@@ -18,8 +18,6 @@ public class Cart {
 				+ memory + ", color=" + color + ", price=" + price + "]";
 	}
 
-
-
 	public String getName() {
 		return name;
 	}

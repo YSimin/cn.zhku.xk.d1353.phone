@@ -1,11 +1,8 @@
-
 package cn.mani123.domain;
-/**
- * AbstractOrder entity provides the base persistence definition of the Order entity. @author MyEclipse Persistence Tools
- */
+// default package
+
 
 public class Order{
-
 
     // Fields    
 
@@ -13,21 +10,28 @@ public class Order{
      private Product product;
      private Account account;
      private Integer num;
+     private Integer status;
 
 
     // Constructors
-     
 
     /** default constructor */
     public Order() {
     }
 
-    
-    /** full constructor */
+	/** minimal constructor */
     public Order(Product product, Account account, Integer num) {
         this.product = product;
         this.account = account;
         this.num = num;
+    }
+    
+    /** full constructor */
+    public Order(Product product, Account account, Integer num, Integer status) {
+        this.product = product;
+        this.account = account;
+        this.num = num;
+        this.status = status;
     }
 
    
@@ -65,12 +69,16 @@ public class Order{
         this.num = num;
     }
 
-
-	@Override
-	public String toString() {
-		return "Order [orderno=" + orderno + ", product=" + product
-				+ ", account=" + account + ", num=" + num + "]";
-	}
-  
+    public Integer getStatus() {
+        return this.status;
+    }
     
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+   
+
+
+
+
 }

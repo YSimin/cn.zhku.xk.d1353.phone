@@ -10,6 +10,9 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="shop" class="cn.mani123.domain.Shop" fetch="select">
+            <column name="shop_id" />
+        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" length="45" not-null="true" />
         </property>
@@ -51,6 +54,21 @@
         </property>
         <property name="hdd" type="java.lang.String">
             <column name="HDD" length="150" />
+        </property>
+        <property name="length" type="java.lang.String">
+            <column name="length" length="45" />
+        </property>
+        <property name="width" type="java.lang.String">
+            <column name="width" length="45" />
+        </property>
+        <property name="height" type="java.lang.String">
+            <column name="height" length="45" />
+        </property>
+        <property name="graphicscard" type="java.lang.String">
+            <column name="graphicscard" length="150" />
+        </property>
+        <property name="graphicsCard" type="java.lang.String">
+            <column name="`graphics card`" length="150" />
         </property>
         <set name="orders" inverse="true">
             <key>

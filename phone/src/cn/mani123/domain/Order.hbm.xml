@@ -10,14 +10,17 @@
             <column name="orderno" />
             <generator class="identity" />
         </id>
-        <many-to-one name="product" class="cn.mani123.domain.Product" fetch="join">
+        <many-to-one name="product" class="cn.mani123.domain.Product" fetch="select">
             <column name="product_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="account" class="cn.mani123.domain.Account" fetch="join">
+        <many-to-one name="account" class="cn.mani123.domain.Account" fetch="select">
             <column name="account_id" not-null="true" />
         </many-to-one>
         <property name="num" type="java.lang.Integer">
             <column name="num" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
         </property>
     </class>
 </hibernate-mapping>
