@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<div style="margin-left:200px; width: 250px; height: 690px; float: left; background:white;">
+		<div style="margin-left:15%; width: 20%; height:100%; float: left; background:white;">
 				<div style="margin-left:50px;">
 				<h4>
 					订单中心

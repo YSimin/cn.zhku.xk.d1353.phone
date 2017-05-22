@@ -80,6 +80,7 @@ public class CartServiceImpl implements CartService{
 		order.setAccount(cartDao.getAccount(id));
 		order.setProduct(cartDao.getProductById(product_id));
 		order.setNum(1);
+		order.setStatus(1);
 		cartDao.add(order);
 	}
 	

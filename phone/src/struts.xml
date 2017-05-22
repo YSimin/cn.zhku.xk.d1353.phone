@@ -7,11 +7,15 @@
 	<package name="phone" extends="struts-default" namespace="/">
 		<action name="Account_*" class="AccountAction" method="{1}">
 			<result name="perCenter">/perInfo/jsp/perCenter/perCenter.jsp</result>
+			<result name="shopPerCenter">/perInfo/jsp/perCenter/shopPerCenter.jsp</result>
 			<result name="index">/index.jsp</result>
 			<result name="failure">/view/failure.jsp</result>
 			<result name="myOrder">/perInfo/jsp/order/myOrder.jsp</result>
+			<result name="shopMyOrder">/perInfo/jsp/shopOrder/myOrder.jsp</result>
 			<result name="comment">/perInfo/jsp/order/comment.jsp</result>
+			<result name="shopComment">/perInfo/jsp/shopOrder/comment.jsp</result>
 			<result name="commented">/perInfo/jsp/order/commented.jsp</result>
+			<result name="shopCommented">/perInfo/jsp/shopOrder/commented.jsp</result>
 			<result name="commentClose">/perInfo/jsp/order/commentClose.jsp</result>
 			<result name="waitComment">/perInfo/jsp/order/comment.jsp</result>
 			<result name="news">/perInfo/jsp/perCenter/news.jsp</result>
@@ -22,9 +26,12 @@
 			<result name="passwordUpdate">/perInfo/jsp/account/password2.jsp</result>
 			<result name="passwordUpdate2">/perInfo/jsp/account/password.jsp</result>
 			<result name="waitPay">/perInfo/jsp/order/waitPay.jsp</result>
+			<result name="shopWaitPay">/perInfo/jsp/shopOrder/waitPay.jsp</result>
 			<result name="waitConfirm">/perInfo/jsp/order/waitConfirm.jsp</result>
+			<result name="shopWaitConfirm">/perInfo/jsp/shopOrder/waitConfirm.jsp</result>
 			<result name="closed">/perInfo/jsp/order/closed.jsp</result>
 			<result name="update">/perInfo/jsp/account/perInfo.jsp</result>
+			<result name="shopLoginSuccess">/perInfo/jsp/perCenter/shopPerCenter.jsp</result>
 			<result name="passwordError" type="redirectAction">Account_perCenter.action</result>
 			<result name="loginSuccess" type="redirectAction">Account_perCenter.action</result>
 		</action>

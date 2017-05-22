@@ -56,10 +56,24 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
+		account = accountService.getUserInfo(id);//获取account对象，把对象通过modeldriver传到jsp页面中
 		ActionContext.getContext().getSession().put("id", id);//传到value栈中
 		int count = accountService.countOrderByAccount(id);
-		ActionContext.getContext().getSession().put("count", count);//传到value栈中
-		return "loginSuccess";
+		ActionContext.getContext().getSession().put("count", count);//传到value栈中		
+		int user = accountService.getUser(id);
+		ActionContext.getContext().getSession().put("user", user);//传到value栈中
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "loginSuccess";
+		}
+		else if(user==3){//用户为卖家
+			return "shopLoginSuccess";
+		}
+		else{
+			return "failure";
+		}
 	}
 	
 	//获得用户信息，返回个人资料页面
@@ -81,39 +95,90 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 	//个人中心页面
 	public String perCenter(){
 		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		int user = (Integer)ActionContext.getContext().getSession().get("user");
 		if(id==null){
 			return "failure";
 		}
 		account = accountService.findById(id);
-		return "perCenter";
+
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "perCenter";
+		}
+		else if(user==3){//用户为卖家
+			return "shopPerCenter";
+		}
+		else{
+			return "failure";
+		}
 	}	
-	
-	//我的订单视图
-	public String myOrder(){		
-		return "myOrder";
-	}
-	
+		
 	//首页
 	public String index(){		
 		return "index";
 	}
 	
 	//评论视图
-	public String comment(){		
-		return "comment";
+	public String comment(){
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getWaitComment(id);
+		ActionContext.getContext().getValueStack().set("product", product);
+		int user = (Integer)ActionContext.getContext().getSession().get("user");
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "comment";
+		}
+		else if(user==3){//用户为卖家
+			return "shopComment";
+		}
+		else{
+			return "failure";
+		}
 	}
 	
-	//评论视图
-	public String waitComment(){		
+	//待评论视图
+	public String waitComment(){
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getWaitComment(id);
+		ActionContext.getContext().getValueStack().set("product", product);
 		return "waitComment";
 	}
 	
-	//评论视图
-	public String commented(){		
-		return "commented";
+	//已评论视图
+	public String commented(){
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getCommented(id);
+		ActionContext.getContext().getValueStack().set("product", product);
+		int user = (Integer)ActionContext.getContext().getSession().get("user");
+		
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "commented";
+		}
+		else if(user==3){//用户为卖家
+			return "shopCommented";
+		}
+		else{
+			return "failure";
+		}
 	}
 	
-	//评论视图
+	//已关闭评论视图
 	public String commentClose(){		
 		return "commentClose";
 	}
@@ -168,16 +233,78 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		return "passwordUpdate2";
 	}
 	
-	//待支付视图
-	public String waitPay(){		
-		return "waitPay";
+	//我的订单视图
+	public String myOrder(){
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getOrder(id);
+		ActionContext.getContext().getValueStack().set("product", product);
+		//判断用户视图
+		int user = (Integer)ActionContext.getContext().getSession().get("user");		
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "myOrder";
+		}
+		else if(user==3){//用户为卖家
+			return "shopMyOrder";
+		}
+		else{
+			return "failure";
+		}
+	}
+	
+	//买家-待发货视图
+	public String waitPay(){	
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getWaitPayProduct(id);
+		ActionContext.getContext().getValueStack().set("product", product);
+		//判断用户视图
+		int user = (Integer)ActionContext.getContext().getSession().get("user");		
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "waitPay";
+		}
+		else if(user==3){//用户为卖家
+			return "shopWaitPay";
+		}
+		else{
+			return "failure";
+		}
 	}
 	
 	//待确认收货视图
-	public String waitConfirm(){		
-		return "waitConfirm";
+	public String waitConfirm(){
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		List<Product> product = accountService.getWaitConfirm(id);
+		ActionContext.getContext().getValueStack().set("product", product);
+		//判断用户视图
+		int user = (Integer)ActionContext.getContext().getSession().get("user");		
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			return "waitConfirm";
+		}
+		else if(user==3){//用户为卖家
+			return "shopWaitConfirm";
+		}
+		else{
+			return "failure";
+		}
 	}
-	
+
 	//已关闭视图
 	public String closed(){		
 		return "closed";

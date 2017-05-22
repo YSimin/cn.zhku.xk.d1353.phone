@@ -27,21 +27,18 @@
 
 	</head>
 	<body>
-		<div
-			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
+		<div style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
 			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
 				<h2>
 					<br>
-					我的订单
+					店铺订单
 				</h2>
 				<br>
 				<div style="">
-					<a href="Account_myOrder?id=1">全部有效订单</a> &nbsp; |&nbsp;
-					<a href="Account_waitPay?id=1">待发货</a> &nbsp;|&nbsp;
-					<a href="Account_waitConfirm?id=1" id="light">待收货</a>&nbsp;|&nbsp;
-					<a href="Account_closed?id=1">已关闭</a>&nbsp;&nbsp;
+					<a href="Account_myOrder">全部有效订单</a> &nbsp; |&nbsp;
+					<a href="Account_waitPay" id="light">待发货</a> &nbsp;|&nbsp;
+					<a href="Account_waitConfirm">待收货</a>&nbsp;|&nbsp;
 				</div>
-				
 			</div>
 				<br>
 				<br>
@@ -49,14 +46,14 @@
 				<br>
 				<br>
 
-			<!--  
+			<!--  	
 				<br>
 				<br>
 				<br>
-			<div style="text-align: center; font-size: 25px;">
-				
+			<div style="text-align: center; font-size: 25px;">			
 				当前没有交易订单。
 			</div>
+			
 			-->
 	
 			<div style="width: 100%;">
@@ -107,7 +104,7 @@
 								</td>
 								<td>
 									<a onclick="return deletefirm();" id="cart"
-										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">确认收货</a>
+										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">发货</a>
 								</td>
 							</tr>
 							</s:iterator>

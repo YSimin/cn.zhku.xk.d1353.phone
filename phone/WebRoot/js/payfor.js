@@ -84,7 +84,7 @@ function clearfirm() {
 	var count = 0;
 	for ( var i = 0; i < oInput.length; i++) {
 		if (oInput[i].checked == true) {
-			if(i!=0){				
+			if(count!=0){				
 				temp += "," + oInput[i].value;
 				temp = temp.replace(/\s+/g, "");// 去除空格
 			}

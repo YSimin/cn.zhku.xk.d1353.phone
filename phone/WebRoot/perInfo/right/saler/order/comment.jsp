@@ -1,52 +1,41 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!-- 待发货页面 -->
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="this is my page">
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css"
-			href="<%=basePath%>/css/perInfo.css">
-			
-<style type="text/css">
+  <head>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/perInfo.css">
+    <style type="text/css">
 #cart:hover {
 	text-decoration: none;
 	font-size: 19px;
 }
 </style>
-
-	</head>
-	<body>
-		<div
-			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
+  </head>
+  <body>
+   	<div style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
 			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
-				<h2>
-					<br>
-					我的订单
-				</h2>
-				<br>
-				<div style="">
-					<a href="Account_myOrder?id=1">全部有效订单</a> &nbsp; |&nbsp;
-					<a href="Account_waitPay?id=1">待发货</a> &nbsp;|&nbsp;
-					<a href="Account_waitConfirm?id=1" id="light">待收货</a>&nbsp;|&nbsp;
-					<a href="Account_closed?id=1">已关闭</a>&nbsp;&nbsp;
-				</div>
-				
-			</div>
+		<h2>
+		<br>
+			店铺评价
+		</h2>
+		<br>
+		<a href="Account_comment" id="light">待评价商品</a> &nbsp; |&nbsp;
+		<a href="Account_commented">已收到的评价</a> &nbsp;&nbsp;
+		
 				<br>
 				<br>
 				<br>
 				<br>
+		<hr width="90%">
+		<br><br>
 				<br>
 
 			<!--  
@@ -107,13 +96,14 @@
 								</td>
 								<td>
 									<a onclick="return deletefirm();" id="cart"
-										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">确认收货</a>
+										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">评分</a>
 								</td>
 							</tr>
 							</s:iterator>
 						</table>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	</body>

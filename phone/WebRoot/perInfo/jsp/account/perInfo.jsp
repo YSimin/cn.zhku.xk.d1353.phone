@@ -21,7 +21,7 @@
 	<body style="background:#F0F0F0;">
 	<jsp:include page="../../top/head.jsp"/>
 	<jsp:include page="../../top/order.jsp"/>
-	<div style=" width: 1200px; height: 1000px;">
+	<div style=" width: 70%;">
 	<jsp:include page="../../left/left.jsp"/>
 	<jsp:include page="../../right/account/account.jsp"/>
 	</div>

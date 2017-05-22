@@ -7,8 +7,6 @@
 			+ path + "/";
 %>
 
-<!-- 待发货页面 -->
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,36 +15,33 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css"
 			href="<%=basePath%>/css/perInfo.css">
-			
-<style type="text/css">
+			<style type="text/css">
 #cart:hover {
 	text-decoration: none;
 	font-size: 19px;
 }
 </style>
-
 	</head>
 	<body>
-		<div
-			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
+		<div style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
 			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
 				<h2>
 					<br>
-					我的订单
+					店铺订单
 				</h2>
 				<br>
 				<div style="">
-					<a href="Account_myOrder?id=1">全部有效订单</a> &nbsp; |&nbsp;
-					<a href="Account_waitPay?id=1">待发货</a> &nbsp;|&nbsp;
-					<a href="Account_waitConfirm?id=1" id="light">待收货</a>&nbsp;|&nbsp;
-					<a href="Account_closed?id=1">已关闭</a>&nbsp;&nbsp;
+					<a href="Account_myOrder" id="light">全部有效订单</a> &nbsp; |&nbsp;
+					<a href="Account_waitPay">待发货</a> &nbsp;|&nbsp;
+					<a href="Account_waitConfirm">待收货</a>&nbsp;&nbsp;
 				</div>
-				
+				<br>
+				<br>
+				<br>
 			</div>
+			<br>
 				<br>
-				<br>
-				<br>
-				<br>
+				<br><br>
 				<br>
 
 			<!--  
@@ -81,9 +76,6 @@
 								<th style="width:10%;">
 									小计
 								</th>
-								<th style="width:10%;">
-									操作
-								</th>
 							</tr>
 							<s:iterator value="product" var="p">
 							<tr>
@@ -104,10 +96,6 @@
 								</td>
 								<td>
 									<s:property value="#p.price"/>
-								</td>
-								<td>
-									<a onclick="return deletefirm();" id="cart"
-										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">确认收货</a>
 								</td>
 							</tr>
 							</s:iterator>

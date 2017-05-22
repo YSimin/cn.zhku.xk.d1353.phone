@@ -1,6 +1,9 @@
 package cn.mani123.service;
 
+import java.util.List;
+
 import cn.mani123.domain.Account;
+import cn.mani123.domain.Product;
 
 public interface AccountService {
 
@@ -17,5 +20,17 @@ public interface AccountService {
 	public boolean vaildId(int id);
 
 	public int countOrderByAccount(Integer id);
+
+	public List<Product> getWaitPayProduct(Integer id);
+
+	public List<Product> getWaitConfirm(Integer id);
+
+	public List<Product> getOrder(Integer id);
+
+	public List<Product> getWaitComment(Integer id);
+
+	public List<Product> getCommented(Integer id);
+
+	public int getUser(Integer id);
 
 }

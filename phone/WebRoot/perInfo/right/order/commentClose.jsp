@@ -13,8 +13,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/perInfo.css">
   </head>
   <body>
-   	<div style="margin-left: 500px;margin-top:60px; width: 1000px; height:220px; background: white;">
-   		<div style="margin-left: 20px; margin-top: 20px;height:160px;">
+   	<div
+			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
+			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
 		<h2>
 		<br>
 			商品评价
@@ -22,7 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<br>
 		<a href="Account_waitComment">待评价商品</a> &nbsp; |&nbsp;
 		<a href="Account_commented">已评价商品</a> &nbsp;|&nbsp;
-		<a href="Account_commentClose" id="light">评价失效商品</a>&nbsp;
 		<hr>
 		<br><br>
 			<div style="text-align:center;">暂时没有符合条件的商品。</div>

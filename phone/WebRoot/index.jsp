@@ -21,8 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body style="margin-top:200px;margin-left:800px;">
+    <s:form action="Account_login?id=3" method="post" namespace="/">
+    	<input type="submit" value="买家登录" class="button">
+    </s:form>
+    <s:form action="Account_login?id=4" method="post" namespace="/">
+    	<input type="submit" value="卖家登录" class="button">
+    </s:form>
     <s:form action="Account_login?id=1" method="post" namespace="/">
-    	<input type="submit" value="登录" class="button">
+    	<input type="submit" value="管理员登录" class="button">
     </s:form>
     <s:form action="Account_perCenter?id=1" method="post" namespace="/">
     	<input type="submit" value="跳转到主页" class="button">

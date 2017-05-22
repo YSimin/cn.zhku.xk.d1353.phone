@@ -46,6 +46,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 			return "error";
 		}
 		List<Product> product = cartService.getProduct(id);
+		int count = cartService.countOrderByAccount(id);
+		ActionContext.getContext().getSession().put("count", count);//传到value栈中
 		ActionContext.getContext().getValueStack().set("product", product);
 		return "get";
 	}
@@ -61,10 +63,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		if(id==null){
 			return "error";
 		}		
-		System.out.println(id);
 		if(product_id!=null&&id!=null){
 			for (int i = 0; i < product_id.length; i++) {
-				System.out.println("clear-----id=------"+product_id[i]+"---------id.lenght="+product_id.length+"-------------------");
+				System.out.println("clear-----id=------"+product_id[i]+"---------product_id.lenght="+product_id.length+"-------------------");
 				cartService.clear(product_id,id);
 			}
 			return "clear";
@@ -105,8 +106,6 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		}	
 		if(product_id!=0&&id!=0){
 			cartService.add(product_id,id);
-			int count = cartService.countOrderByAccount(id);
-			ActionContext.getContext().getSession().put("count", count);//传到value栈中
 			return "add";
 		}
 		else return "error";		

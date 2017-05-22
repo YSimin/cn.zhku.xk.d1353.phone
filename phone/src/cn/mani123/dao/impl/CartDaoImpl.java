@@ -10,16 +10,18 @@ import cn.mani123.domain.Order;
 
 public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.CartDao {
 
+	
 	@Override
 	//通过account_id获取商品列表
 	public List<Product> getProduct(Integer id) {
-		String hql = "from Product where id in (select product from Order where account = "+id+")";
+		String hql = "from Product where id in (select product from Order where account = " + id + "and status = 1)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
 		for (Product l:list) {
 			System.out.println(l.getName());
 		}
 		return list;
 	}
+
 	
 	@Override
 	//通过account_id获得订单列表
@@ -31,6 +33,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 			}
 		 return list;
 	}
+
 	
 	@Override
 	//获得用户的订单数量
@@ -43,6 +46,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		return 0;
 	}
 
+	
 	@Override
 	//获取用户的购物车列表
 	public List<Cart> getCart(Integer id) {
@@ -56,6 +60,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		return null;
 	}
 
+	
 	@Override
 	//清算
 	public void clear(String[] id,int i) {
@@ -65,6 +70,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		}				
 	}
 
+	
 	@Override
 	//通过account_id获得orderno订单编号
 	public int getOrderNo(Integer id) {
@@ -77,6 +83,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		return 0;
 	}
 
+	
 	//通过account_id和product_id获得订单列表
 	@Override
 	public List<Order> getOrderByDouble(Integer id, int i) {
@@ -86,25 +93,29 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		return list;
 	}
 
+	
 	@Override
 	//结算
 	public void clear(List<Order> list) {
 		for (int i = 0; i < list.size(); i++) {
-			this.getHibernateTemplate().delete(list.get(i)); 
+			Order order = list.get(i);
+			order.setStatus(2);
+			this.getHibernateTemplate().update(order);
 		}
 		
 	}
 
+	
 	@Override
 	public int countOrderByAccount(Integer id) {
-		String hql = "select count(*) from Order where account = " + id;
+		String hql = "select count(*) from Order where account = " + id + "and status = 1";
 		List<Long> list = this.getHibernateTemplate().find(hql);
 		if(list.size()>0){
 			return list.get(0).intValue();
 		}
 		return 0;
 	}
-
+	
 	
 	@Override
 	//商品id为String类型
@@ -116,12 +127,14 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 			
 	}
 
+	
 	@Override
 	public void delete(String id, int i) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	
 	@Override
 	//删除订单
 	public void delete(List<Order> list) {	
@@ -130,21 +143,25 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		}	
 	}
 
+	
 	@Override
 	//通过用户id获得用户对象
 	public Account getAccount(Integer id) {
 		return this.getHibernateTemplate().get(Account.class, id);
 	}
 
+	
 	@Override
 	//通过商品id获得商品对象
 	public Product getProductById(Integer id) {
 		return this.getHibernateTemplate().get(Product.class, id);
 	}
 
+	
 	@Override
 	//通过一个Order对象，添加订单信息
 	public void add(Order order) {
 		this.getHibernateTemplate().save(order);		
 	}
+	
 }

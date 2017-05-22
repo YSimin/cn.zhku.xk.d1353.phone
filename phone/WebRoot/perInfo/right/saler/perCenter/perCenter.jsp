@@ -74,10 +74,10 @@
 							<br>
 							<br>
 							<br>
-							待支付的订单：0
+							待发货的订单：0
 							<br>
 							<br>
-							<a href="Account_waitPay">查看待支付订单 ></a>
+							<a href="Account_shopWaitPay">查看待发货订单 ></a>
 							<br>
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 							待收货的订单：0
 							<br>
 							<br>
-							<a href="Account_waitConfirm">查看待收货订单 ></a>
+							<a href="Account_shopWaitConfirm">查看待收货订单 ></a>
 							<br>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 							待评价的商品数：0
 							<br>
 							<br>
-							<a href="Account_waitComment">查看待评价商品 ></a>
+							<a href="Account_shopWaitComment">查看待评价商品 ></a>
 							<br>
 						</div>
 					</div>
