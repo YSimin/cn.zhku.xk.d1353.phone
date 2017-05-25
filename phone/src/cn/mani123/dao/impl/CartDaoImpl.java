@@ -102,7 +102,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	public void clear(List<Order> list) {
 		for (int i = 0; i < list.size(); i++) {
 			Order order = list.get(i);
-			order.setStatus(2);
+			order.setStatus(2);//已付款，待发货
 			this.getHibernateTemplate().update(order);
 		}
 		
@@ -172,7 +172,13 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	//通过商品id查找商店id
 	public Shop getShopByProduct(Integer product_id) {
 		Product product = this.getHibernateTemplate().get(Product.class, product_id);
-		System.out.println(product.getShop());
+//		String hql = "from Shop where id = (select shop from Product where id = " + product_id + " )";
+//		List<Shop> list = this.getHibernateTemplate().find(hql);
+//		if(list.size()>0){
+//			System.out.println("shop not null;!!!!");
+//			return list.get(0);
+//		}
+//		System.out.println("shop is null;!!!!");
 		return product.getShop();
 	}
 
@@ -200,7 +206,6 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	@Override
 	//更新订单信息
 	public void updateOrder(Order order) {
-		System.out.println("update order");
 		this.getHibernateTemplate().update(order);
 	}
 
@@ -244,6 +249,18 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	public Shop getShop(Integer product_id) {
 		String hql = "from Shop where id = (select shop from Product where id = "+product_id+")";
 		List<Shop> list = this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+
+
+	@Override
+	//根据account和product对象获得订单信息
+	public Order getCartOrder(Account account, Product product) {
+		String hql = "from Order where account = ? and product = ? and status = 1";
+		List<Order> list = this.getHibernateTemplate().find(hql, account,product);
 		if(list.size()>0){
 			return list.get(0);
 		}

@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <s:form action="Cart_get" method="post" namespace="/">
     	<input type="submit" value="跳转到购物车" class="button">
     </s:form>
-    <s:form action="Cart_add?product_id=60" method="post" namespace="/">
+    <s:form action="Cart_add?id=3&product_id=17" method="post" namespace="/">
     	<input type="submit" value="添加到购物车" class="button">
     </s:form>
         <a href="Cart_add?id=1&product_id=1"><input type="submit" value="跳转到购物车" class="button"></a>

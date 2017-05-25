@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.mani123.domain.Product" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 String path = request.getContextPath();
@@ -19,9 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 </style>
   </head>
-    <%
-  	List<String> score= (List<String>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("scoreList"); 
-   %>
   <body>
    	<div style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
 			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
@@ -36,8 +33,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<hr width="90%">
 		<br><br>
 		<%
-				List product = (List) com.opensymphony.xwork2.ActionContext
+				List<String> score= (List<String>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("scoreList"); 
+				List<Product> product = (List<Product>) com.opensymphony.xwork2.ActionContext
 						.getContext().getValueStack().findValue("product");
+				List<Integer> num= (List<Integer>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("num"); 
+				double total = 0;
+				List<Double> listNum = new ArrayList<Double>();
+				for(int i=0;i<product.size();i++){
+					double temp = (Double.parseDouble(product.get(i).getPrice().substring(0,product.get(i).getPrice().length()-1)));//去除最后一个字符"元"字
+					double littleCount = temp*num.get(i);
+					total += littleCount;
+					listNum.add(littleCount);
+				}								
+				int i=0;	
 				if (product.size()==0) {
 			%>
 			<br>
@@ -73,7 +81,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									商品评分
 								</th>
 							</tr>
-							<% int i = 0; %>
 							<s:iterator value="product" var="p">
 							<tr>
 								<td style="width:10%;">
@@ -89,10 +96,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:property value="#p.price"/>
 								</td>
 								<td>
-									1
+									<%=num.get(i) %>
 								</td>
 								<td>
-									<s:property value="#p.price"/>
+									<%=listNum.get(i)%>元
 								</td>
 								<td>
 									<%=score.get(i)%>分

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*,cn.mani123.domain.Product" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
@@ -17,6 +17,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css"
 			href="<%=basePath%>/css/perInfo.css">
+		<script src="<%=basePath%>/js/payfor.js"></script>
 			
 <style type="text/css">
 #cart:hover {
@@ -50,8 +51,18 @@
 				<br>
 
 			<%
-				List product = (List) com.opensymphony.xwork2.ActionContext
+				List<Product> product = (List<Product>) com.opensymphony.xwork2.ActionContext
 						.getContext().getValueStack().findValue("product");
+				List<Integer> num= (List<Integer>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("num"); 
+				double total = 0;
+				List<Double> listNum = new ArrayList<Double>();
+				for(int i=0;i<product.size();i++){
+					double temp = (Double.parseDouble(product.get(i).getPrice().substring(0,product.get(i).getPrice().length()-1)));//去除最后一个字符"元"字
+					double littleCount = temp*num.get(i);
+					total += littleCount;
+					listNum.add(littleCount);
+				}								
+				int i=0;	
 				if (product.size()==0) {
 			%>
 			<br>
@@ -103,13 +114,13 @@
 									<s:property value="#p.price"/>
 								</td>
 								<td>
-									1
+									<%=num.get(i) %>
 								</td>
 								<td>
-									<s:property value="#p.price"/>
+									<%=listNum.get(i++) %>元
 								</td>
 								<td>
-									<a onclick="return deletefirm();" id="cart"
+									<a onclick="return confirmConfirm();" id="cart"
 										href="Cart_confirm?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">确认收货</a>
 								</td>
 							</tr>

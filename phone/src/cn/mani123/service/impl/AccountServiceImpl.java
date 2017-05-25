@@ -8,6 +8,7 @@ import cn.mani123.dao.AccountDao;
 import cn.mani123.domain.Account;
 import cn.mani123.domain.Order;
 import cn.mani123.domain.Product;
+import cn.mani123.domain.Shop;
 import cn.mani123.service.AccountService;
 
 public class AccountServiceImpl implements AccountService{
@@ -115,7 +116,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	//卖家接收到的订单信息
+	//卖家接收到的商品信息
 	public List<Product> getShopOrder(Integer id) {
 		return accountDao.getShopOrder(id);
 	}
@@ -151,7 +152,6 @@ public class AccountServiceImpl implements AccountService{
 		Account account  = accountDao.findById(id);
 		for (int i = 0; i < product.size(); i++) {			
 			String score = accountDao.getProductScore(product.get(i),account);
-			System.out.println(score);
 			if(score!=null){
 				list.add(score);
 			}
@@ -171,13 +171,118 @@ public class AccountServiceImpl implements AccountService{
 			Order order = accountDao.getShopCommentedOrder(product.get(i));
 			if(order!=null){
 				list.add(order.getScore());
-				System.out.println("order.getScore()===="+order.getScore());
 			}
 			else{
 				list.add("0");
 			}			
 		}
 		return list;
+	}
+
+	@Override
+	//根据买家id和商品列表获得买家的订单数量集合
+	public List<Integer> productNum(Integer id, List<Product> product,int status) {
+		Account account = accountDao.getAccount(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getCartOrder(account, product.get(i),status);
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	//买家所有订单商品的数量集合
+	public List<Integer> allProductNum(Integer id, List<Product> product,int status) {
+		Account account = accountDao.getAccount(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getAllCartOrder(account, product.get(i),status);
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	//卖家所有订单商品的数量集合
+	public List<Integer> shopAllProductNum(Integer id, List<Product> product,
+			int status) {
+		Shop shop = accountDao.getShop(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getAllShopOrder(shop, product.get(i),status);		
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
 	}	
+
+	@Override
+	//买家已成交订单的商品数量集合
+	public List<Integer> closeProductNum(Integer id, List<Product> product) {
+		Account account = accountDao.getAccount(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getcloseCartOrder(account, product.get(i));
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	//商店中商品数量的列表
+	public List<Integer> shopProductNum(Integer id, List<Product> product,
+			int status) {
+		Shop shop = accountDao.getShop(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getShopOrderByThree(shop, product.get(i),status);
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	//卖家已成交订单的商品数量集合
+	public List<Integer> shopCloseProductNum(Integer id, List<Product> product) {
+		Shop shop = accountDao.getShop(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = accountDao.getShopCloseProductNum(shop, product.get(i));
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
+	}
+
+	
 	
 }

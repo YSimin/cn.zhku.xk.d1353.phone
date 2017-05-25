@@ -56,4 +56,6 @@ public interface CartDao {
 
 	public Shop getShop(Integer product_id);
 
+	public Order getCartOrder(Account account, Product product);
+
 }

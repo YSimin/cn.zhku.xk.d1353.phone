@@ -42,8 +42,9 @@
 		<result name="add">/view/failure.jsp</result>
 		<result name="error">/view/failure.jsp</result>
 		<result name="comment" type="redirectAction">Account_comment.action</result>
+		<result name="confirm" type="redirectAction">Account_waitConfirm.action</result>
 		<result name="clear" type="redirectAction">Cart_get.action</result>		
-		<result name="pay" type="redirectAction">Cart_confirm.action</result>		
+		<result name="pay" type="redirectAction">Account_waitPay.action</result>		
 		<result name="delete" type="redirectAction">Cart_get.action</result>
 		</action>	
 	</package>

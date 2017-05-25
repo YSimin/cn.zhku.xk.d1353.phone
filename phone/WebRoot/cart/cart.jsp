@@ -35,7 +35,20 @@
 }
 </style>
 	</head>
-	
+	<%
+				List<Product> product = (List<Product>) com.opensymphony.xwork2.ActionContext
+						.getContext().getValueStack().findValue("product");
+				List<Integer> num= (List<Integer>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("num"); 
+				double total = 0;
+				List<Double> listNum = new ArrayList<Double>();
+				for(int i=0;i<product.size();i++){
+					double temp = (Double.parseDouble(product.get(i).getPrice().substring(0,product.get(i).getPrice().length()-1)));//去除最后一个字符"元"字
+					double littleCount = temp*num.get(i);
+					total += littleCount;
+					listNum.add(littleCount);
+				}								
+				int i=0;			
+	%>
 	<s:hidden name="id" value="#session.id" />
 
 	<body style="background-color: #F0F0F0;">
@@ -104,10 +117,10 @@
 										<s:property value="#p.price"></s:property>
 									</td>
 									<td>
-										1
+										<%=num.get(i)%>
 									</td>
 									<td>
-										<s:property value="#p.price"></s:property>
+										<%=listNum.get(i)%>
 									</td>
 									<td>
 										<s:property value="#id" />
@@ -115,6 +128,7 @@
 											href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">×</a>
 									</td>
 								</tr>
+								<%i++; %>
 							</s:iterator>
 						</table>
 					</div>
@@ -148,7 +162,7 @@
 								</div>
 								<div
 									style="font-family: 黑体; font-weight: bold; align: center; font-size: 30px; float: right;">
-									<s:property value="#p.price" />
+									<%=total%>元
 									&nbsp;&nbsp;&nbsp;
 								</div>
 							</div>

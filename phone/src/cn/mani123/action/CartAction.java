@@ -47,6 +47,8 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		}
 		List<Product> product = cartService.getProduct(id);
 		int count = cartService.countOrderByAccount(id);
+		List<Integer> num = cartService.productNum(id,product);
+		ActionContext.getContext().getValueStack().set("num", num);
 		ActionContext.getContext().getSession().put("count", count);//传到value栈中
 		ActionContext.getContext().getValueStack().set("product", product);
 		return "get";
@@ -95,8 +97,9 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 	
 	//添加购物车	
 	public String add(){
-		Integer product_id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("product_id")));
+		Integer product_id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("product_id")));//需要修改！！！！
 		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		System.out.println("id========="+id);
 		if(id==null){
 			id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("id"))) ;
 			System.out.println("requestparameter add get id!!!!");
@@ -142,7 +145,7 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		}	
 		if(product_id!=0&&id!=0){
 			cartService.confirm(id,product_id);
-			return "pay";
+			return "confirm";
 		}
 		else return "error";	
 	}

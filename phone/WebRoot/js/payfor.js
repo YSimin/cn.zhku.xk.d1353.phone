@@ -123,3 +123,15 @@ function deletefirm()
 			return false;
 		}
 }
+
+function confirmConfirm() {
+	question = confirm("确定要付款吗？");  			   
+	if (question == true){
+		alert("收货成功！可进入已成交查看订单或在评价晒单页面对商品进行评价！");
+				window.location.href = "Cart_clear?product_id=" + temp;
+	}
+	else{
+		return false;
+	}
+	
+}

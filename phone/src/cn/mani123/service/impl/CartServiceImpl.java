@@ -1,5 +1,6 @@
 package cn.mani123.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.mani123.dao.CartDao;
@@ -78,14 +79,23 @@ public class CartServiceImpl implements CartService{
 	@Override
 	//添加订单,需要修改！！！！
 	public void add(Integer product_id, Integer id) {
-		Order order = new Order();
+		System.out.println("product_id========"+product_id);
+		Account account  = cartDao.getAccount(id);
+		Product product = cartDao.getProductById(product_id);
+		Order order = cartDao.getCartOrder(account, product);
+		if(order!=null){
+			order.setNum(order.getNum()+1);
+			cartDao.updateOrder(order);
+		}
+		else{
+		order = new Order();
 		order.setAccount(cartDao.getAccount(id));//设置用户
 		order.setProduct(cartDao.getProductById(product_id));//设置商品
 		order.setNum(1);
 		order.setStatus(1);
 		order.setShop(cartDao.getShopByProduct(product_id));//设置店铺
-		order.setScore("0");
 		cartDao.add(order);
+		}
 	}
 
 	@Override
@@ -101,7 +111,6 @@ public class CartServiceImpl implements CartService{
 	//订单收货
 	public void confirm(Integer id, Integer product_id) {
 		Order order = cartDao.getAccountOrder(id,product_id);//获取原本订单信息
-		System.out.println("order.getno===="+order.getOrderno());
 		order.setStatus(4);//修改订单状态---待评论，已成交
 		cartDao.updateOrder(order);		
 	}
@@ -120,6 +129,23 @@ public class CartServiceImpl implements CartService{
 		order.setStatus(5);
 		order.setScore(score);
 		cartDao.updateOrder(order);//更新订单状态
+	}
+
+	@Override
+	//获得购物车每个商品的数量，返回数量的集合
+	public List<Integer> productNum(Integer id, List<Product> product) {
+		Account account = cartDao.getAccount(id);
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < product.size(); i++) {
+			Order order = cartDao.getCartOrder(account, product.get(i));
+			if(order!=null){
+				list.add(order.getNum());
+			}
+			else{
+				list.add(0);
+			}
+		}
+		return list;
 	}
 	
 }

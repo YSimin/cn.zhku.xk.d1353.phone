@@ -5,6 +5,7 @@ import java.util.List;
 import cn.mani123.domain.Account;
 import cn.mani123.domain.Order;
 import cn.mani123.domain.Product;
+import cn.mani123.domain.Shop;
 
 public interface AccountDao {
 
@@ -51,5 +52,19 @@ public interface AccountDao {
 	public String getShopProductScore(Product product, Account account);
 
 	public Order getShopCommentedOrder(Product product);
+
+	public Order getCartOrder(Account account, Product product, int status);
+
+	public Order getAllCartOrder(Account account, Product product, int status);
+
+	public Order getcloseCartOrder(Account account, Product product);
+
+	public Shop getShop(Integer id);
+
+	public Order getShopOrderByThree(Shop shop, Product product, int status);
+
+	public Order getAllShopOrder(Shop shop, Product product, int status);
+
+	public Order getShopCloseProductNum(Shop shop, Product product);
 
 }

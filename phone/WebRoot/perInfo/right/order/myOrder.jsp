@@ -1,3 +1,4 @@
+<%@page import="cn.mani123.domain.Product"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
@@ -46,8 +47,18 @@
 				<br>
 
 			<%
-				List product = (List) com.opensymphony.xwork2.ActionContext
+				List<Product> product = (List<Product>) com.opensymphony.xwork2.ActionContext
 						.getContext().getValueStack().findValue("product");
+				List<Integer> num= (List<Integer>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("num"); 
+				double total = 0;
+				List<Double> listNum = new ArrayList<Double>();
+				for(int i=0;i<product.size();i++){
+					double temp = (Double.parseDouble(product.get(i).getPrice().substring(0,product.get(i).getPrice().length()-1)));//去除最后一个字符"元"字
+					double littleCount = temp*num.get(i);
+					total += littleCount;
+					listNum.add(littleCount);
+				}								
+				int i=0;
 				if (product.size()==0) {
 			%>
 			<br>
@@ -96,10 +107,10 @@
 									<s:property value="#p.price"/>
 								</td>
 								<td>
-									1
+									<%=num.get(i)%>
 								</td>
 								<td>
-									<s:property value="#p.price"/>
+									<%=listNum.get(i++)%>元
 								</td>
 							</tr>
 							</s:iterator>

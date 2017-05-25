@@ -31,4 +31,6 @@ public interface CartService {
 	void confirm(Integer id, Integer product_id);
 
 	void comment(Integer id, Integer product_id, String score);
+
+	List<Integer> productNum(Integer id, List<Product> product);
 }

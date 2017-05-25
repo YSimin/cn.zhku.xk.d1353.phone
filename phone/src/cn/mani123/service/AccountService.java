@@ -51,4 +51,19 @@ public interface AccountService {
 
 	public List<String> getShopProductScore(List<Product> product, Integer id);
 
+	public List<Integer> productNum(Integer id, List<Product> product, int status);
+
+	public List<Integer> allProductNum(Integer id, List<Product> product,
+			int status);
+
+	public List<Integer> closeProductNum(Integer id, List<Product> product);
+
+	public List<Integer> shopProductNum(Integer id, List<Product> product,
+			int status);
+
+	public List<Integer> shopAllProductNum(Integer id, List<Product> product,
+			int status);
+
+	public List<Integer> shopCloseProductNum(Integer id, List<Product> product);
+
 }
