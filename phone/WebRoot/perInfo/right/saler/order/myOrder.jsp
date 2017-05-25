@@ -34,6 +34,7 @@
 					<a href="Account_myOrder" id="light">全部有效订单</a> &nbsp; |&nbsp;
 					<a href="Account_waitPay">待发货</a> &nbsp;|&nbsp;
 					<a href="Account_waitConfirm">待收货</a>&nbsp;&nbsp;
+					<a href="Account_closed?id=1">已成交</a>&nbsp;&nbsp;
 				</div>
 				<br>
 				<br>
@@ -44,16 +45,18 @@
 				<br><br>
 				<br>
 
-			<!--  
-				<br>
-				<br>
-				<br>
+			<%
+				List product = (List) com.opensymphony.xwork2.ActionContext
+						.getContext().getValueStack().findValue("product");
+				if (product.size()==0) {
+			%>
+			<br>
 			<div style="text-align: center; font-size: 25px;">
-				
 				当前没有交易订单。
 			</div>
-			-->
-	
+			<%
+				} else {
+			%>
 			<div style="width: 100%;">
 				
 				<div style="background: #fff; margin: 0 auto;">
@@ -103,6 +106,7 @@
 					</div>
 				</div>
 			</div>
+			<%} %>
 		</div>
 	</body>
 </html>

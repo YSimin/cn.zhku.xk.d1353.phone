@@ -1,6 +1,7 @@
 package cn.mani123.action;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -126,16 +127,18 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
-		List<Product> product = accountService.getWaitComment(id);
-		ActionContext.getContext().getValueStack().set("product", product);
 		int user = (Integer)ActionContext.getContext().getSession().get("user");
 		if(user==1){//用户为管理员
 			return "failure";
 		}
-		else if(user==2){//用户为买家
+		else if(user==2){//用户为买家--返回买家视图
+			List<Product> product = accountService.getWaitComment(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "comment";
 		}
-		else if(user==3){//用户为卖家
+		else if(user==3){//用户为卖家--返回卖家视图
+			List<Product> product = accountService.getShopWaitComment(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "shopComment";
 		}
 		else{
@@ -160,17 +163,23 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
-		List<Product> product = accountService.getCommented(id);
-		ActionContext.getContext().getValueStack().set("product", product);
 		int user = (Integer)ActionContext.getContext().getSession().get("user");
 		
 		if(user==1){//用户为管理员
 			return "failure";
 		}
 		else if(user==2){//用户为买家
+			List<Product> product = accountService.getCommented(id);
+			List<String> scoreList = accountService.getProductScore(product,id);		
+			ActionContext.getContext().getValueStack().set("product", product);
+			ActionContext.getContext().getValueStack().set("scoreList", scoreList);
 			return "commented";
 		}
 		else if(user==3){//用户为卖家
+			List<Product> product = accountService.getShopCommented(id);
+			List<String> scoreList = accountService.getShopProductScore(product,id);		
+			ActionContext.getContext().getValueStack().set("product", product);
+			ActionContext.getContext().getValueStack().set("scoreList", scoreList);
 			return "shopCommented";
 		}
 		else{
@@ -239,17 +248,19 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
-		List<Product> product = accountService.getOrder(id);
-		ActionContext.getContext().getValueStack().set("product", product);
 		//判断用户视图
 		int user = (Integer)ActionContext.getContext().getSession().get("user");		
 		if(user==1){//用户为管理员
 			return "failure";
 		}
 		else if(user==2){//用户为买家
+			List<Product> product = accountService.getOrder(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "myOrder";
 		}
 		else if(user==3){//用户为卖家
+			List<Product> product = accountService.getShopOrder(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "shopMyOrder";
 		}
 		else{
@@ -263,17 +274,19 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
-		List<Product> product = accountService.getWaitPayProduct(id);
-		ActionContext.getContext().getValueStack().set("product", product);
 		//判断用户视图
 		int user = (Integer)ActionContext.getContext().getSession().get("user");		
 		if(user==1){//用户为管理员
 			return "failure";
 		}
 		else if(user==2){//用户为买家
+			List<Product> product = accountService.getWaitPayProduct(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "waitPay";
 		}
 		else if(user==3){//用户为卖家
+			List<Product> product = accountService.getShopWaitPayProduct(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "shopWaitPay";
 		}
 		else{
@@ -287,17 +300,19 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		if(id==null){
 			return "failure";
 		}
-		List<Product> product = accountService.getWaitConfirm(id);
-		ActionContext.getContext().getValueStack().set("product", product);
 		//判断用户视图
 		int user = (Integer)ActionContext.getContext().getSession().get("user");		
 		if(user==1){//用户为管理员
 			return "failure";
 		}
 		else if(user==2){//用户为买家
+			List<Product> product = accountService.getWaitConfirm(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "waitConfirm";
 		}
 		else if(user==3){//用户为卖家
+			List<Product> product = accountService.getShopWaitConfirm(id);
+			ActionContext.getContext().getValueStack().set("product", product);
 			return "shopWaitConfirm";
 		}
 		else{
@@ -306,9 +321,31 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 	}
 
 	//已关闭视图
-	public String closed(){		
-		return "closed";
+	public String closed(){	
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			return "failure";
+		}
+		//判断用户视图
+		int user = (Integer)ActionContext.getContext().getSession().get("user");		
+		if(user==1){//用户为管理员
+			return "failure";
+		}
+		else if(user==2){//用户为买家
+			List<Product> product = accountService.getClosed(id);
+			ActionContext.getContext().getValueStack().set("product", product);
+			return "closed";
+		}
+		else if(user==3){//用户为卖家
+			List<Product> product = accountService.getShopClosed(id);
+			ActionContext.getContext().getValueStack().set("product", product);
+			return "shopClosed";
+		}
+		else{
+			return "failure";
+		}
 	}
+	
 	
 	
 }

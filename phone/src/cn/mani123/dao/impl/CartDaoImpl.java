@@ -1,12 +1,15 @@
 package cn.mani123.dao.impl;
 
 import java.util.List;
+
+import org.aspectj.weaver.ast.And;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.mani123.domain.Account;
 import cn.mani123.domain.Cart;
 import cn.mani123.domain.Product;
 import cn.mani123.domain.Order;
+import cn.mani123.domain.Shop;
 
 public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.CartDao {
 
@@ -50,7 +53,7 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	@Override
 	//获取用户的购物车列表
 	public List<Cart> getCart(Integer id) {
-		String sql = "select name ,version, memory , color , price from Product where id = (select product from Order where account = 1)";
+		String sql = "select name ,version, memory , color , price from Product where id = (select product from Order where account = "+ id + ")";
 		List<List> list = (List<List>) this.getHibernateTemplate().find(sql);
 		for(int i = 0 ; i< list.size();i++){                
 	        for (int j = 0; j < 4; j++) {
@@ -162,6 +165,89 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	//通过一个Order对象，添加订单信息
 	public void add(Order order) {
 		this.getHibernateTemplate().save(order);		
+	}
+
+
+	@Override
+	//通过商品id查找商店id
+	public Shop getShopByProduct(Integer product_id) {
+		Product product = this.getHibernateTemplate().get(Product.class, product_id);
+		System.out.println(product.getShop());
+		return product.getShop();
+	}
+
+
+	@Override
+	//查找
+	public void pay(Integer id, Integer product_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	//通过商店id和商品id查找订单表
+	public Order getShopOrder(Integer id, Integer product_id) {
+		String hql = "from Order where shop = (select id from Shop where account = " + id + ") and product = " + product_id + "and status = 2" ;
+		List<Order> list =  this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		else return null;
+	}
+
+
+	@Override
+	//更新订单信息
+	public void updateOrder(Order order) {
+		System.out.println("update order");
+		this.getHibernateTemplate().update(order);
+	}
+
+
+	@Override
+	//订单收货
+	public Order getAccountOrder(Integer id, Integer product_id) {
+		String hql = "from Order where account = " + id + " and product = " + product_id + "and status = 3" ;//查找用户待收货的订单
+		List<Order> list =  this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		else return null;
+	}
+
+
+	@Override
+	//获取待评分订单
+	public Order getWaitCommentOrder(Integer id, Integer product_id) {
+		String hql = "from Order where account = " + id + "and product = " + product_id + "and status = 4";//查找用户
+		List<Order> list = this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
+		
+	}
+
+
+	@Override
+	//获取已评价订单的数量
+	public int getCommentedCount(Shop shop) {
+		String hql = "from Order where shop = ? and status = 5";
+		List<Order> list = this.getHibernateTemplate().find(hql,shop);
+		return list.size();
+	}
+
+
+	@Override
+	//获取商店对象
+	public Shop getShop(Integer product_id) {
+		String hql = "from Shop where id = (select shop from Product where id = "+product_id+")";
+		List<Shop> list = this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 }

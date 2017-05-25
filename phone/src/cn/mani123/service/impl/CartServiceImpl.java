@@ -7,6 +7,7 @@ import cn.mani123.domain.Account;
 import cn.mani123.domain.Cart;
 import cn.mani123.domain.Order;
 import cn.mani123.domain.Product;
+import cn.mani123.domain.Shop;
 import cn.mani123.service.CartService;
 
 public class CartServiceImpl implements CartService{
@@ -75,13 +76,64 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	//添加订单,需要修改！！！！
 	public void add(Integer product_id, Integer id) {
 		Order order = new Order();
-		order.setAccount(cartDao.getAccount(id));
-		order.setProduct(cartDao.getProductById(product_id));
+		order.setAccount(cartDao.getAccount(id));//设置用户
+		order.setProduct(cartDao.getProductById(product_id));//设置商品
 		order.setNum(1);
 		order.setStatus(1);
+		order.setShop(cartDao.getShopByProduct(product_id));//设置店铺
+		order.setScore("0");
 		cartDao.add(order);
+	}
+
+	@Override
+	//订单发货 -----
+	public void pay(Integer id, Integer product_id) {
+		Order order = cartDao.getShopOrder(id,product_id);//获取原本订单信息
+		System.out.println("order.getno===="+order.getOrderno());
+		order.setStatus(3);//修改订单状态
+		cartDao.updateOrder(order);
+	}
+
+	@Override
+	//订单收货
+	public void confirm(Integer id, Integer product_id) {
+		Order order = cartDao.getAccountOrder(id,product_id);//获取原本订单信息
+		System.out.println("order.getno===="+order.getOrderno());
+		order.setStatus(4);//修改订单状态---待评论，已成交
+		cartDao.updateOrder(order);		
+	}
+
+	@Override
+	//用户评分业务处理
+	public void comment(Integer id, Integer product_id, String score) {		
+		Shop shop = cartDao.getShop(product_id);//获取商店对象
+		int count = cartDao.getCommentedCount(shop);//获取总评分条数
+		double temp = Double.parseDouble(score);
+		System.out.println("temp==="+temp);
+		temp = (temp + Double.parseDouble(shop.getScore())*count) / (count+1);//计算店铺评分		
+		shop.setScore(String.valueOf(temp));//修改店铺评分
+		//更新订单状态
+		Order order = cartDao.getWaitCommentOrder(id, product_id);
+		order.setStatus(5);
+		order.setScore(score);
+		cartDao.updateOrder(order);//更新订单状态
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

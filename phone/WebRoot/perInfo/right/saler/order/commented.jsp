@@ -19,6 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 </style>
   </head>
+    <%
+  	List<String> score= (List<String>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("scoreList"); 
+   %>
   <body>
    	<div style="margin-left: 40%; margin-top: 5%; width: 90%; height: 70%; background: white;">
 			<div style="margin-left: 5%; margin-top: 5%; height: 10%;">
@@ -32,16 +35,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<br><br><br><br>
 		<hr width="90%">
 		<br><br>
-		<!--  
-				<br>
-				<br>
-				<br>
+		<%
+				List product = (List) com.opensymphony.xwork2.ActionContext
+						.getContext().getValueStack().findValue("product");
+				if (product.size()==0) {
+			%>
+			<br>
 			<div style="text-align: center; font-size: 25px;">
-				
 				当前没有交易订单。
 			</div>
-		-->
-	
+			<%
+				} else {
+			%>
 			<div style="width: 100%;">
 				
 				<div style="background: #fff; margin: 0 auto;">
@@ -64,7 +69,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th style="width:10%;">
 									小计
 								</th>
+								<th style="width:10%;">
+									商品评分
+								</th>
 							</tr>
+							<% int i = 0; %>
 							<s:iterator value="product" var="p">
 							<tr>
 								<td style="width:10%;">
@@ -85,12 +94,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>
 									<s:property value="#p.price"/>
 								</td>
+								<td>
+									<%=score.get(i)%>分
+								</td>
 							</tr>
+							<%i++; %>
 							</s:iterator>
 						</table>
 					</div>
 				</div>
 			</div>
+			<%} %>
 			</div>
 		</div>
 	</body>

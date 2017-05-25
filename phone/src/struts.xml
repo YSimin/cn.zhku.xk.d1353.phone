@@ -30,6 +30,7 @@
 			<result name="waitConfirm">/perInfo/jsp/order/waitConfirm.jsp</result>
 			<result name="shopWaitConfirm">/perInfo/jsp/shopOrder/waitConfirm.jsp</result>
 			<result name="closed">/perInfo/jsp/order/closed.jsp</result>
+			<result name="shopClosed">/perInfo/jsp/shopOrder/closed.jsp</result>
 			<result name="update">/perInfo/jsp/account/perInfo.jsp</result>
 			<result name="shopLoginSuccess">/perInfo/jsp/perCenter/shopPerCenter.jsp</result>
 			<result name="passwordError" type="redirectAction">Account_perCenter.action</result>
@@ -40,7 +41,9 @@
 		<result name="get">/cart/cart.jsp</result>
 		<result name="add">/view/failure.jsp</result>
 		<result name="error">/view/failure.jsp</result>
+		<result name="comment" type="redirectAction">Account_comment.action</result>
 		<result name="clear" type="redirectAction">Cart_get.action</result>		
+		<result name="pay" type="redirectAction">Cart_confirm.action</result>		
 		<result name="delete" type="redirectAction">Cart_get.action</result>
 		</action>	
 	</package>

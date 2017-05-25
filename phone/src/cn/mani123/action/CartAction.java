@@ -111,4 +111,69 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		else return "error";		
 	}
 	
+	//发货视图
+	public String pay(){
+		Integer product_id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("product_id")));
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("id"))) ;
+			System.out.println("requestparameter add get id!!!!");
+		}
+		if(id==null){
+			return "error";
+		}	
+		if(product_id!=0&&id!=0){
+			cartService.pay(id,product_id);
+			return "pay";
+		}
+		else return "error";	
+	}
+	
+	//收货视图
+	public String confirm(){
+		Integer product_id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("product_id")));
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		if(id==null){
+			id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("id"))) ;
+			System.out.println("requestparameter add get id!!!!");
+		}
+		if(id==null){
+			return "error";
+		}	
+		if(product_id!=0&&id!=0){
+			cartService.confirm(id,product_id);
+			return "pay";
+		}
+		else return "error";	
+	}
+	
+	//评分视图
+	public String comment(){
+		Integer product_id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("product_id")));
+		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
+		String score = ServletActionContext.getRequest().getParameter("score");
+		if(id==null){
+			id = (Integer.parseInt(ServletActionContext.getRequest().getParameter("id"))) ;
+			System.out.println("requestparameter add get id!!!!");
+		}
+		if(id==null){
+			return "error";
+		}	
+		int user = (Integer)ActionContext.getContext().getSession().get("user");
+		if(user==1){//用户为管理员
+			return "error";
+		}
+		else if(user==2){//用户为买家
+			cartService.comment(id,product_id,score);
+			return "comment";
+		}
+		else if(user==3){//用户为卖家
+			return "shopComment";
+		}
+		else{
+			return "error";
+		}
+	}
+	
+	
 }

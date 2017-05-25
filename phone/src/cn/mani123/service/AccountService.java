@@ -33,4 +33,22 @@ public interface AccountService {
 
 	public int getUser(Integer id);
 
+	public List<Product> getShopWaitComment(Integer id);
+
+	public List<Product> getShopCommented(Integer id);
+
+	public List<Product> getShopOrder(Integer id);
+
+	public List<Product> getShopWaitPayProduct(Integer id);
+
+	public List<Product> getShopWaitConfirm(Integer id);
+
+	public List<Product> getShopClosed(Integer id);
+
+	public List<Product> getClosed(Integer id);
+
+	public List<String> getProductScore(List<Product> product, Integer id);
+
+	public List<String> getShopProductScore(List<Product> product, Integer id);
+
 }

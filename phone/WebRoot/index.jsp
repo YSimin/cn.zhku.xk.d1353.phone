@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link rel="stylesheet" type="text/css" href="css/perInfo.css">
-
+  
   </head>
   
   <body style="margin-top:200px;margin-left:800px;">
@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </s:form>
         <a href="Cart_add?id=1&product_id=1"><input type="submit" value="跳转到购物车" class="button"></a>
      <input type="button" name="button" id="button" value="提交" onclick="a()"/>
+   
 	<script type="text/javascript">
 	function a()
 	{

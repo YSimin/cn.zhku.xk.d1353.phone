@@ -1,10 +1,12 @@
 package cn.mani123.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import cn.mani123.dao.AccountDao;
 import cn.mani123.domain.Account;
+import cn.mani123.domain.Order;
 import cn.mani123.domain.Product;
 import cn.mani123.service.AccountService;
 
@@ -99,5 +101,83 @@ public class AccountServiceImpl implements AccountService{
 		return account.getUser();
 		
 	}
+
+	@Override
+	//卖家待评论方法
+	public List<Product> getShopWaitComment(Integer id) {
+		return accountDao.getShopWaitComment(id);
+	}
+
+	@Override
+	//卖家已评论方法
+	public List<Product> getShopCommented(Integer id) {
+		return accountDao.getShopCommented(id);
+	}
+
+	@Override
+	//卖家接收到的订单信息
+	public List<Product> getShopOrder(Integer id) {
+		return accountDao.getShopOrder(id);
+	}
+
+	@Override
+	//卖家未发货订单
+	public List<Product> getShopWaitPayProduct(Integer id) {
+		return accountDao.getShopWaitPayProduct(id);
+	}
+
+	@Override
+	//卖家已发货待收货订单
+	public List<Product> getShopWaitConfirm(Integer id) {
+		return accountDao.getShopWaitConfirm(id);
+	}
+
+	@Override
+	//卖家成功付款界面
+	public List<Product> getShopClosed(Integer id) {
+		return accountDao.getShopClosed(id);
+	}
+
+	@Override
+	//买家成功付款界面
+	public List<Product> getClosed(Integer id) {
+		return accountDao.getClosed(id);
+	}
+
+	@Override
+	//获得商品评分列表
+	public List<String> getProductScore(List<Product> product,Integer id) {
+		List<String> list = new ArrayList<String>();
+		Account account  = accountDao.findById(id);
+		for (int i = 0; i < product.size(); i++) {			
+			String score = accountDao.getProductScore(product.get(i),account);
+			System.out.println(score);
+			if(score!=null){
+				list.add(score);
+			}
+			else{
+				list.add("0.0");
+			}
+			
+		}
+		return list;
+	}
+
+	@Override
+	//获得商店中的获得的商品评分
+	public List<String> getShopProductScore(List<Product> product, Integer id) {
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < product.size(); i++) {			
+			Order order = accountDao.getShopCommentedOrder(product.get(i));
+			if(order!=null){
+				list.add(order.getScore());
+				System.out.println("order.getScore()===="+order.getScore());
+			}
+			else{
+				list.add("0");
+			}			
+		}
+		return list;
+	}	
 	
 }

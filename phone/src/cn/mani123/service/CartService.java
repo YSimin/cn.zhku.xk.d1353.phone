@@ -25,4 +25,10 @@ public interface CartService {
 	void delete(Integer product_id, int i);
 
 	void add(Integer product_id, Integer id);
+
+	void pay(Integer id, Integer product_id);
+
+	void confirm(Integer id, Integer product_id);
+
+	void comment(Integer id, Integer product_id, String score);
 }

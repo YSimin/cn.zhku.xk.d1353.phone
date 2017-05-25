@@ -6,6 +6,7 @@ import cn.mani123.domain.Account;
 import cn.mani123.domain.Cart;
 import cn.mani123.domain.Order;
 import cn.mani123.domain.Product;
+import cn.mani123.domain.Shop;
 
 public interface CartDao {
 
@@ -38,5 +39,21 @@ public interface CartDao {
 	public Product getProductById(Integer product_id);
 
 	public void add(Order order);
+
+	public Shop getShopByProduct(Integer product_id);
+
+	public void pay(Integer id, Integer product_id);
+
+	public Order getShopOrder(Integer id, Integer product_id);
+
+	public void updateOrder(Order order);
+
+	public Order getAccountOrder(Integer id, Integer product_id);
+
+	public Order getWaitCommentOrder(Integer id, Integer product_id);
+
+	public int getCommentedCount(Shop shop);
+
+	public Shop getShop(Integer product_id);
 
 }

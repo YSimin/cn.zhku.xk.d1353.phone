@@ -81,13 +81,13 @@ public class AccountDaoImpl extends HibernateDaoSupport implements AccountDao {
 	@Override
 	//获取该用户的所有订单
 	public List<Product> getOrder(Integer id) {
-		String hql = "from Product where id in (select product from Order where account = " + id + ")";
+		String hql = "from Product where id in (select product from Order where account = " + id + "and status != 1)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
 		return list;
 	}
 
 	@Override
-	//返回用户的待评价商品页面
+	//返回买家的待评价商品页面
 	public List<Product> getWaitComment(Integer id) {
 		String hql = "from Product where id in (select product from Order where account = " + id + "and status = 4)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
@@ -107,6 +107,97 @@ public class AccountDaoImpl extends HibernateDaoSupport implements AccountDao {
 	public Account getAccount(Integer id) {
 		return this.getHibernateTemplate().get(Account.class, id);
 	}
+
+	@Override
+	//获取卖家待评论的商品对象集合
+	public List<Product> getShopWaitComment(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where status = 4)"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	//店铺已评论信息
+	public List<Product> getShopCommented(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where status = 5)"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	//卖家所有订单信息
+	public List<Product> getShopOrder(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where status != 1)"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	//卖家未发货订单
+	public List<Product> getShopWaitPayProduct(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where status = 2)"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getId());
+		}
+		return list;
+	}
+
+	@Override
+	//卖家待收货订单
+	public List<Product> getShopWaitConfirm(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where status = 3)"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getId());
+		}
+		return list;
+	}
+
+	@Override
+	//卖家成功订单信息
+	public List<Product> getShopClosed(Integer id) {
+		String hql = "from Product where shop = (select id from Shop where account = " + id + ") and id in (select product from Order where (status = 4 or status = 5))"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	//买家成功订单信息
+	public List<Product> getClosed(Integer id) {
+		String hql = "from Product where id in (select product from Order where account = " + id + " and (status = 4 or status = 5))"; 
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	//获得用户的商品评分
+	public String getProductScore(Product product,Account account) {
+		String hql = "from Order where product = ? and account = ? and status = 5";
+		List<Order> list = this.getHibernateTemplate().find(hql,product,account);
+		return list.get(0).getScore();
+	}
+
+	@Override
+	//获得商店商品评分
+	public String getShopProductScore(Product product, Account account) {
+		String hql = "from Order where product = ? and shop = ? and status = 5";
+		List<Order> list = this.getHibernateTemplate().find(hql,product,account);
+		return list.get(0).getScore();
+	}
+
+	@Override
+	//通过product对象获得已评论订单
+	public Order getShopCommentedOrder(Product product) {
+		String hql = "from Order where product = ? and status = 5";
+		List<Order> list = this.getHibernateTemplate().find(hql,product);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+
+	
 	
 }
 

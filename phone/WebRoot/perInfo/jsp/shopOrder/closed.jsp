@@ -16,9 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 	<body style="background:#F0F0F0;">
 	<jsp:include page="../../top/head.jsp"/>
-	<jsp:include page="../../top/perCenter.jsp"/>
+	<jsp:include page="../../top/order.jsp"/>
 	<div style=" width: 70%;">
 	<jsp:include page="../../left/left.jsp"/>
-	<jsp:include page="../../right/perCenter/discount.jsp"/>
+	<jsp:include page="../../right/saler/order/closed.jsp"/>
 	</div>
 </html>

@@ -37,17 +37,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<hr width="90%">
 		<br><br>
 				<br>
-
-			<!--  
-				<br>
-				<br>
-				<br>
+			<%
+				List product = (List) com.opensymphony.xwork2.ActionContext
+						.getContext().getValueStack().findValue("product");
+				if (product.size()==0) {
+			%>
+			<br>
 			<div style="text-align: center; font-size: 25px;">
-				
 				当前没有交易订单。
 			</div>
-			-->
-	
+			<%
+				} else {
+			%>
 			<div style="width: 100%;">
 				
 				<div style="background: #fff; margin: 0 auto;">
@@ -70,9 +71,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th style="width:10%;">
 									小计
 								</th>
-								<th style="width:10%;">
-									操作
-								</th>
 							</tr>
 							<s:iterator value="product" var="p">
 							<tr>
@@ -94,16 +92,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td>
 									<s:property value="#p.price"/>
 								</td>
-								<td>
-									<a onclick="return deletefirm();" id="cart"
-										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">评分</a>
-								</td>
 							</tr>
 							</s:iterator>
 						</table>
 					</div>
 				</div>
 			</div>
+			<%} %>
 			</div>
 		</div>
 	</body>

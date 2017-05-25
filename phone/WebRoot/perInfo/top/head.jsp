@@ -171,7 +171,7 @@ text-align:center;
 		<ul class="topul">
 			<li class="topli"><a class="link" href="">登录</a></li>
 			<li class="topli"><a class="link" href="">注册</a></li>
-			<!-- <li class="topli"><a class="link" href="Account_news">消息通知</a></li> -->
+			<li class="topli"><a class="link" href="Account_myOrder">订单信息</a></li> 
 			<li class="topli"><a class="link" href="Cart_get">购物车(<s:property value="#session.count"/>)</a></li>
 		</ul>
 	</div>
