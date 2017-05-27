@@ -33,7 +33,7 @@
 						晚上好
 						<br>
 						<br>
-						<a href="Account_getUserInfo?id=1">修改个人信息</a>
+						<a href="Account_getUserInfo.action?id=1">修改个人信息</a>
 						<br>
 						<br>
 					</div>
@@ -77,7 +77,7 @@
 							待支付的订单
 							<br>
 							<br>
-							<a href="Account_waitPay">查看待支付订单 ></a>
+							<a href="Account_waitPay.action">查看待支付订单 ></a>
 							<br>
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 							待收货的订单
 							<br>
 							<br>
-							<a href="Account_waitConfirm">查看待收货订单 ></a>
+							<a href="Account_waitConfirm.action">查看待收货订单 ></a>
 							<br>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 							待评价的商品数
 							<br>
 							<br>
-							<a href="Account_waitComment">查看待评价商品 ></a>
+							<a href="Account_waitComment.action">查看待评价商品 ></a>
 							<br>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 							购物车
 							<br>
 							<br>
-							<a href="Cart_get">查看购物车 ></a>
+							<a href="Cart_get.action">查看购物车 ></a>
 							<br>
 						</div>
 					</div>

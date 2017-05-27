@@ -30,7 +30,6 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public List<Product> getProduct(Integer id) {	
 		return cartDao.getProduct(id);
-		//return cartDao.get(id);
 	}
 
 	//获取订单列表
@@ -51,7 +50,6 @@ public class CartServiceImpl implements CartService{
 	public void clear(String[] id ,int i) {
 		String[] idtest = id[0].split(","); 
 		for (int j = 0; j < idtest.length; j++) {
-			System.out.println("service.clear==================="+idtest[j]+"");		
 			List<Order> list = cartDao.getOrderByDouble(idtest[j], i);
 			cartDao.clear(list);
 		}			
@@ -60,7 +58,6 @@ public class CartServiceImpl implements CartService{
 	//通过account_id获取订单编号
 	@Override
 	public int getOrderNo(Integer id) {
-		
 		return cartDao.getOrderNo(id);
 	}
 
@@ -79,7 +76,6 @@ public class CartServiceImpl implements CartService{
 	@Override
 	//添加订单,需要修改！！！！
 	public void add(Integer product_id, Integer id) {
-		System.out.println("product_id========"+product_id);
 		Account account  = cartDao.getAccount(id);
 		Product product = cartDao.getProductById(product_id);
 		Order order = cartDao.getCartOrder(account, product);
@@ -102,7 +98,6 @@ public class CartServiceImpl implements CartService{
 	//订单发货 -----
 	public void pay(Integer id, Integer product_id) {
 		Order order = cartDao.getShopOrder(id,product_id);//获取原本订单信息
-		System.out.println("order.getno===="+order.getOrderno());
 		order.setStatus(3);//修改订单状态
 		cartDao.updateOrder(order);
 	}
@@ -121,9 +116,9 @@ public class CartServiceImpl implements CartService{
 		Shop shop = cartDao.getShop(product_id);//获取商店对象
 		int count = cartDao.getCommentedCount(shop);//获取总评分条数
 		double temp = Double.parseDouble(score);
-		System.out.println("temp==="+temp);
-		temp = (temp + Double.parseDouble(shop.getScore())*count) / (count+1);//计算店铺评分		
+		temp = (temp + Double.parseDouble(shop.getScore())*count) / (count+1);//计算店铺评分	
 		shop.setScore(String.valueOf(temp));//修改店铺评分
+		cartDao.updateShop(shop);//更新shop状态
 		//更新订单状态
 		Order order = cartDao.getWaitCommentOrder(id, product_id);
 		order.setStatus(5);

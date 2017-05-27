@@ -19,9 +19,6 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	public List<Product> getProduct(Integer id) {
 		String hql = "from Product where id in (select product from Order where account = " + id + "and status = 1)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
-		for (Product l:list) {
-			System.out.println(l.getName());
-		}
 		return list;
 	}
 
@@ -31,9 +28,6 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	public List<Order> getOrder(Integer id) {
 		 String hql = "from Order where account = " + id;
 			List<Order> list = this.getHibernateTemplate().find(hql);
-			for (Order l:list) {
-				System.out.println(list.get(0).getOrderno());
-			}
 		 return list;
 	}
 
@@ -55,11 +49,6 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	public List<Cart> getCart(Integer id) {
 		String sql = "select name ,version, memory , color , price from Product where id = (select product from Order where account = "+ id + ")";
 		List<List> list = (List<List>) this.getHibernateTemplate().find(sql);
-		for(int i = 0 ; i< list.size();i++){                
-	        for (int j = 0; j < 4; j++) {
-				System.out.println(list.get(i).get(j));
-			}   
-	    }   
 		return null;
 	}
 
@@ -172,13 +161,6 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 	//通过商品id查找商店id
 	public Shop getShopByProduct(Integer product_id) {
 		Product product = this.getHibernateTemplate().get(Product.class, product_id);
-//		String hql = "from Shop where id = (select shop from Product where id = " + product_id + " )";
-//		List<Shop> list = this.getHibernateTemplate().find(hql);
-//		if(list.size()>0){
-//			System.out.println("shop not null;!!!!");
-//			return list.get(0);
-//		}
-//		System.out.println("shop is null;!!!!");
 		return product.getShop();
 	}
 
@@ -265,6 +247,14 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 			return list.get(0);
 		}
 		return null;
+	}
+
+
+	@Override
+	//更新shop对象
+	public void updateShop(Shop shop) {
+		this.getHibernateTemplate().update(shop);
+		
 	}
 	
 }

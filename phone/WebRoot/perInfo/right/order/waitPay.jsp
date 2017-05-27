@@ -35,10 +35,10 @@
 				</h2>
 				<br>
 				<div style="">
-					<a href="Account_myOrder?id=1">全部有效订单</a> &nbsp; |&nbsp;
-					<a href="Account_waitPay?id=1" id="light">待发货</a> &nbsp;|&nbsp;
-					<a href="Account_waitConfirm?id=1">待收货</a>&nbsp;|&nbsp;
-					<a href="Account_closed?id=1">已成交</a>&nbsp;&nbsp;
+					<a href="Account_myOrder.action?id=1">全部有效订单</a> &nbsp; |&nbsp;
+					<a href="Account_waitPay.action?id=1" id="light">待发货</a> &nbsp;|&nbsp;
+					<a href="Account_waitConfirm.action?id=1">待收货</a>&nbsp;|&nbsp;
+					<a href="Account_closed.action?id=1">已成交</a>&nbsp;&nbsp;
 				</div>
 				
 			</div>
@@ -119,7 +119,7 @@
 								</td>
 								<td>
 									<a onclick="return deletefirm();" id="cart"
-										href="Cart_delete?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">取消订单</a>
+										href="Cart_delete.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>">取消订单</a>
 								</td>
 							</tr>
 							</s:iterator>

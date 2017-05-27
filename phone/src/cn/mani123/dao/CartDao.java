@@ -58,4 +58,6 @@ public interface CartDao {
 
 	public Order getCartOrder(Account account, Product product);
 
+	public void updateShop(Shop shop);
+
 }

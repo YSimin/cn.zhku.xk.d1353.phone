@@ -43,7 +43,6 @@ public class AccountDaoImpl extends HibernateDaoSupport implements AccountDao {
 			System.out.println(list.get(0).getUsername());
 			return true;
 		}
-		System.out.println("list is null");
 		return false;
 	}
 
@@ -62,9 +61,6 @@ public class AccountDaoImpl extends HibernateDaoSupport implements AccountDao {
 	public List<Product> getWaitPayProduct(Integer id) {
 		String hql = "from Product where id in (select product from Order where account = " + id + "and status = 2)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
-		for (Product l:list) {
-			System.out.println(l.getName());
-		}
 		return list;
 	}
 
@@ -73,9 +69,6 @@ public class AccountDaoImpl extends HibernateDaoSupport implements AccountDao {
 	public List<Product> getWaitConfirm(Integer id) {
 		String hql = "from Product where id in (select product from Order where account = " + id + "and status = 3)";
 		List<Product> list = this.getHibernateTemplate().find(hql);
-		for (Product l:list) {
-			System.out.println(l.getName());
-		}
 		return list;
 	}
 

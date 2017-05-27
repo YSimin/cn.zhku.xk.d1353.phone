@@ -21,7 +21,7 @@
 	<body style="background: #F0F0F0;">
 		<div
 			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 100%; background: white;">
-				<form action="Account_passwordUpdate2" method="post">
+				<form action="Account_passwordUpdate2.action" method="post">
 				<div style=" margin-left: auto; margin-right: auto;">
 							<div
 								style="float: right; height: 30px; line-height: 100px; width: 50px;">

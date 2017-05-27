@@ -18,7 +18,7 @@
 	<body style="background: #F0F0F0;">
 		<div
 			style="margin-left: 40%; margin-top: 5%; width: 90%; height: 100%; background: white;">
-				<form action="Account_update" method="post">
+				<form action="Account_update.action" method="post">
 				<s:hidden name="id" value="%{model.id}"/>
 				<s:hidden name="password" value="%{model.password}"/>
 				<s:hidden name="order_id" value="%{model.order_id}"/>

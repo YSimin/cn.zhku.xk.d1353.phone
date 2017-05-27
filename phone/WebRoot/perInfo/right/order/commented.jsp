@@ -27,14 +27,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			商品评价
 		</h2>
 		<br>
-		<a href="Account_comment">待评价商品</a> &nbsp; |&nbsp;
-		<a href="Account_commented" id="light">已评价商品</a> &nbsp;&nbsp;
+		<a href="Account_comment.action">待评价商品</a> &nbsp; |&nbsp;
+		<a href="Account_commented.action" id="light">已评价商品</a> &nbsp;&nbsp;
 		<br><br><br><br>
 		<hr width="90%">
 		<br><br>
 		<%
 				List<String> score= (List<String>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("scoreList"); 
-				System.out.print("score========"+score.isEmpty());
 				List<Product> product = (List<Product>) com.opensymphony.xwork2.ActionContext
 						.getContext().getValueStack().findValue("product");
 				List<Integer> num= (List<Integer>)com.opensymphony.xwork2.ActionContext.getContext().getValueStack().findValue("num"); 

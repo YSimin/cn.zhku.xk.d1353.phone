@@ -36,10 +36,10 @@
 				</h2>
 				<br>
 				<div style="">
-					<a href="Account_myOrder">全部有效订单</a> &nbsp; |&nbsp;
-					<a href="Account_waitPay">待发货</a> &nbsp;|&nbsp;
-					<a href="Account_waitConfirm" id="light">待收货</a>&nbsp;|&nbsp;
-					<a href="Account_closed?id=1">已成交</a>&nbsp;&nbsp;
+					<a href="Account_myOrder.action">全部有效订单</a> &nbsp; |&nbsp;
+					<a href="Account_waitPay.action">待发货</a> &nbsp;|&nbsp;
+					<a href="Account_waitConfirm.action" id="light">待收货</a>&nbsp;|&nbsp;
+					<a href="Account_closed.action?id=1">已成交</a>&nbsp;&nbsp;
 					
 				</div>			
 			</div>

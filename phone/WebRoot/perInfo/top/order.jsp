@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   		<div style="margin-top:50px; margin-left:200px;">
-			<a href="Account_index">首页</a> > 订单中心
+			<a href="Account_index.action">首页</a> > 订单中心
 		</div>
   </body>
 </html>

@@ -6,125 +6,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-        <title>星星打分</title>
-        
-        <style type="text/css">
-        .shop-rating {
-    height: 25px;
-    overflow: hidden;
-    zoom: 1;
-    padding: 2px 0px;
-    position: relative;
-    z-index: 999;
-}
-
-.shop-rating span {
-    height: 23px;
-    display: block;
-    line-height: 23px;
-    float: left;
-}
-
-.shop-rating span.title {
-    width: 125px;
-    text-align: right;
-    margin-right: 5px;
-}
-
-.shop-rating ul {
-    float: left;
-        margin:0;padding:0
-}
-
-.shop-rating .result {
-    margin-left: 20px;
-    padding-top: 2px;
-}
-
-.shop-rating .result span {
-        color: #ff6d02;
-}
-.shop-rating .result em {
-    color: #f60;
-    font-family: arial;
-    font-weight: bold;
-}
-.shop-rating .result strong {
-        color: #666666;
-        font-weight: normal;
-}
-.rating-level,
-.rating-level a {
-    background: url(http://a.tbcdn.cn/app/rc/img/star_v2.png) no-repeat scroll 1000px 1000px;
-}
-.rating-level {
-    background-position: 0px 0px;
-    width: 120px;
-    height: 23px;
-    position: relative;
-    z-index: 1000;
-}
-.rating-level li {
-    display: inline;
-}
-
-.rating-level a {
-    line-height: 23px;
-    height: 23px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    text-indent: -999em;
-    *zoom: 1;
-    outline: none;
-}
-
-
-.rating-level a.one-star {
-    width: 20%;
-    z-index: 6;
-}
-
-.rating-level a.two-stars {
-width: 40%;
-z-index: 5;
-}
-
-.rating-level a.three-stars {
-    width: 60%;
-    z-index: 4;
-}
-
-.rating-level a.four-stars {
-    width: 80%;
-    z-index: 3;
-}
-
-.rating-level a.five-stars {
-    width: 100%;
-    z-index: 2;
-}
-
-.rating-level .current-rating,.rating-level a:hover{background-position:0 -28px;}
-.rating-level a.one-star:hover,.rating-level a.two-stars:hover,.rating-level a.one-star.current-rating,.rating-level a.two-stars.current-rating{background-position:0 -116px;}
-.rating-level .three-stars .current-rating,.rating-level .four-stars .current-rating,.rating-level .five-stars .current-rating{background-position:0 -28px;}
-        </style>
-
-    </head>
-    <body>
-        <div class="shop-rating">
-        <span class="title"></span>
-        <ul class="rating-level" id="stars2">
-                <li><a class="one-star"  href="">1</a></li>
-                <li><a class="two-stars"  href="#">2</a></li>
-                <li><a class="three-stars"  href="#">3</a></li>
-                <li><a class="four-stars"  href="#">4</a></li>
-                <li><a class="five-stars" href="#">5</a></li>
-        </ul>
-        <span class="result" id="stars2-tips"></span>
-        <input type="hidden" id="stars2-input" name="b" value="" size="2" />
-		</div>
-    </body>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'MyJsp.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link rel="stylesheet" type="text/css" href="css/perInfo.css">
+  
+  </head>
+  
+  <body style="margin-top:200px;margin-left:800px;">
+    <s:form action="Account_login?id=3" method="post" namespace="/">
+    	<input type="submit" value="买家登录" class="button">
+    </s:form>
+    <s:form action="Account_login?id=4" method="post" namespace="/">
+    	<input type="submit" value="卖家登录" class="button">
+    </s:form>
+    <s:form action="Account_login?id=1" method="post" namespace="/">
+    	<input type="submit" value="管理员登录" class="button">
+    </s:form>
+    <s:form action="Account_perCenter?id=1" method="post" namespace="/">
+    	<input type="submit" value="跳转到主页" class="button">
+    </s:form>
+    <s:form action="Cart_get" method="post" namespace="/">
+    	<input type="submit" value="跳转到购物车" class="button">
+    </s:form>
+    <s:form action="Cart_add?id=3&product_id=17" method="post" namespace="/">
+    	<input type="submit" value="添加到购物车" class="button">
+    </s:form>
+    <!-- 		<% int user=(Integer) session.getAttribute("user");
+			if(user==1){			 
+		%>
+		    <li class="topli"><a class="link" href="<%=basePath%>/together.jsp">首页</a></li>
+		    <li class="topli"><a class="link" href="">管理员你好，欢迎光临！</a></li>
+			<li class="topli"><a class="link" href="<%=basePath%>/admin.jsp">店铺信息</a></li>
+			<%}if(user==2){ %>
+			<li class="topli"><a class="link" href="<%=basePath%>/together.jsp">首页</a></li>
+			<li class="topli"><a class="link" href="">客户你好，欢迎光临！</a></li>
+			<li class="topli"><a class="link" href="">消息通知</a></li>
+			<li class="topli"><a class="link" href="">购物车</a></li>	
+				<%}if(user==3){ %>
+		    <li class="topli"><a class="link" href="<%=basePath%>/together.jsp">首页</a></li>
+			<li class="topli"><a class="link" href="">卖家你好，欢迎光临！</a></li>
+			<li class="topli"><a class="link" href="">自家店铺</a></li>
+			
+			<%}else{%>
+		    <li class="topli"><a class="link" href="<%=basePath%>/login.jsp">你好，请登录</a></li>
+			<li class="topli"><a class="link" href="<%=basePath%>/login.jsp">免费注册</a></li>
+			<%} %>
+ -->
+        <a href="Cart_add?id=1&product_id=1"><input type="submit" value="跳转到购物车" class="button"></a>
+     <input type="button" name="button" id="button" value="提交" onclick="a()"/>
+   
+	<script type="text/javascript">
+	function a()
+	{
+	alert("测试！");
+	}
+	</script>   
+  </body>
 </html>

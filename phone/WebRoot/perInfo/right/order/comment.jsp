@@ -30,8 +30,8 @@
 					商品评价
 				</h2>
 				<br>
-				<a href="Account_waitComment" id="light">待评价商品</a> &nbsp; |&nbsp;
-				<a href="Account_commented">已评价商品</a> &nbsp;&nbsp;
+				<a href="Account_waitComment.action" id="light">待评价商品</a> &nbsp; |&nbsp;
+				<a href="Account_commented.action">已评价商品</a> &nbsp;&nbsp;
 
 				<br>
 				<br>
@@ -116,19 +116,19 @@
 											<span class="title"></span>
 												<ul class="rating-level" id="stars2">
 													<li>
-														<a class="one-star" href="Cart_comment?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=1">1</a>
+														<a class="one-star" href="Cart_comment.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=1">1</a>
 													</li>
 													<li>
-														<a class="two-stars" href="Cart_comment?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=2">2</a>
+														<a class="two-stars" href="Cart_comment.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=2">2</a>
 													</li>
 													<li>
-														<a class="three-stars" href="Cart_comment?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=3">3</a>
+														<a class="three-stars" href="Cart_comment.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=3">3</a>
 													</li>
 													<li>
-														<a class="four-stars" href="Cart_comment?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=4">4</a>
+														<a class="four-stars" href="Cart_comment.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=4">4</a>
 													</li>
 													<li>
-														<a class="five-stars" href="Cart_comment?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=5">5</a>
+														<a class="five-stars" href="Cart_comment.action?id=<s:property value="#session.id"/>&product_id=<s:property value="#p.id"/>&score=5">5</a>
 													</li>
 												</ul>
 												

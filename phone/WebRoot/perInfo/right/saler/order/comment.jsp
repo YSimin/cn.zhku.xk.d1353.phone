@@ -27,8 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			店铺评价
 		</h2>
 		<br>
-		<a href="Account_comment" id="light">待评价商品</a> &nbsp; |&nbsp;
-		<a href="Account_commented">已收到的评价</a> &nbsp;&nbsp;
+		<a href="Account_comment.action" id="light">待评价商品</a> &nbsp; |&nbsp;
+		<a href="Account_commented.action">已收到的评价</a> &nbsp;&nbsp;
 		
 				<br>
 				<br>

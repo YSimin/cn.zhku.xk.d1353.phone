@@ -8,7 +8,7 @@
 		<action name="Account_*" class="AccountAction" method="{1}">
 			<result name="perCenter">/perInfo/jsp/perCenter/perCenter.jsp</result>
 			<result name="shopPerCenter">/perInfo/jsp/perCenter/shopPerCenter.jsp</result>
-			<result name="index">/index.jsp</result>
+			<result name="index">/together.jsp</result>
 			<result name="failure">/view/failure.jsp</result>
 			<result name="myOrder">/perInfo/jsp/order/myOrder.jsp</result>
 			<result name="shopMyOrder">/perInfo/jsp/shopOrder/myOrder.jsp</result>
