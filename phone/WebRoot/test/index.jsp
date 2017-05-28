@@ -7,7 +7,7 @@
 <title>合并页面</title>
 </head>
 <body> 
-<jsp:include page="/head2.jsp" flush='true'/>   
-<jsp:include page="/classify.jsp" flush='true'/>   
+<jsp:include page="/home/head.jsp" flush='true'/>   
+<jsp:include page="/home/classify.jsp" flush='true'/>   
 </body>
 </html>

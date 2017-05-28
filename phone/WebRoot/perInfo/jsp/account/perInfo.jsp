@@ -9,6 +9,7 @@
 
 <html>
   <head>
+  	<title>个人信息</title>
     <base href="<%=basePath%>">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">

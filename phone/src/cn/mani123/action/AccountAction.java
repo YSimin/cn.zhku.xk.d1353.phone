@@ -286,7 +286,7 @@ public class AccountAction extends ActionSupport implements ModelDriven<Account>
 		}
 	}
 	
-	//买家-待发货视图
+	//待发货视图
 	public String waitPay(){	
 		Integer id = (Integer)ActionContext.getContext().getSession().get("id");
 		if(id==null){

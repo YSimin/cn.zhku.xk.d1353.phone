@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+div.shop{
+	position:relative;
+}
+
+div.shop-top-buyer{
+	position:relative;
+	width:1200px;
+	height:100px;
+}
+
+div.shop-top-saler{
+	position:relative;
+	width:1200px;
+	height:150px;
+}
+
+div.top-center{
+	position:relative;
+	width:1100px;
+	
+}
+
+ ul.box {
+ list-style-type: none;
+ margin:0px;
+ padding:0px;
+}
+ul.box li {
+ margin:7px;
+ padding:5px;
+ float:left;
+ width:250px;
+ height:460px;
+}
+
+table.cforeach {
+	border-top:1px solid #e0e0e0;
+	border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	border-bottom:1px solid #e0e0e0;
+	font-family:微软雅黑;
+	
+}
+
+a {
+	font-family: 微软雅黑;
+	color:#000000;
+	text-decoration: none
+}
+
+a:hover{
+	color:#FF4500;
+	border:#FF4500;
+}
+
+#delete{
+	font-family:微软雅黑;
+
+	color:#FF4500;
+}
+
+
+
+

@@ -55,21 +55,21 @@ public class LoginCtrl extends HttpServlet {
 				request.getSession().setAttribute("count",count);
 				if(account_id==1)
 				{
-					rd = request.getRequestDispatcher("../together.jsp");
+					rd = request.getRequestDispatcher("../home/together.jsp");
 				    rd.forward(request, response);
 				}
 				else if(account_id==2)
 				{
-					rd = request.getRequestDispatcher("../together.jsp");
+					rd = request.getRequestDispatcher("../home/together.jsp");
 				    rd.forward(request, response);
 				}
 				else{
-				rd = request.getRequestDispatcher("../together.jsp");
+				rd = request.getRequestDispatcher("../home/together.jsp");
 				rd.forward(request, response);
 				}
 			}else{
 				msg = "error";
-				rd = request.getRequestDispatcher("../result.jsp");
+				rd = request.getRequestDispatcher("../login/result.jsp");
 				request.setAttribute("MSG", msg);
 				rd.forward(request, response);
 				

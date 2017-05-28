@@ -55,21 +55,6 @@
         <property name="hdd" type="java.lang.String">
             <column name="HDD" length="150" />
         </property>
-        <property name="length" type="java.lang.String">
-            <column name="length" length="45" />
-        </property>
-        <property name="width" type="java.lang.String">
-            <column name="width" length="45" />
-        </property>
-        <property name="height" type="java.lang.String">
-            <column name="height" length="45" />
-        </property>
-        <property name="graphicscard" type="java.lang.String">
-            <column name="graphicscard" length="150" />
-        </property>
-        <property name="graphicsCard" type="java.lang.String">
-            <column name="`graphics card`" length="150" />
-        </property>
         <set name="orders" inverse="true">
             <key>
                 <column name="product_id" not-null="true" />

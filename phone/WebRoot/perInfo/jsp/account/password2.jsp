@@ -9,6 +9,7 @@
 
 <html>
   <head>
+    <title>修改密码</title>
     <base href="<%=basePath%>">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">

@@ -125,7 +125,7 @@ function deletefirm()
 }
 
 function confirmConfirm() {
-	question = confirm("确定要付款吗？");  			   
+	question = confirm("确定要收货吗，您将打款给卖家！");  			   
 	if (question == true){
 		alert("收货成功！可进入已成交查看订单或在评价晒单页面对商品进行评价！");
 				window.location.href = "Cart_clear?product_id=" + temp;
@@ -134,4 +134,23 @@ function confirmConfirm() {
 		return false;
 	}
 	
+}
+
+
+function search()
+{
+var sear = document.getElementByName("input");
+alert("sear="+sear);
+window.location.href = "Cart_search.action?product_name=" + sear;
+}
+
+function check(){
+	var oInput = document.getElementsByName("phone");
+	for(var i=0;i<oInput.length;i++){
+	if(document.getElementById("all").checked==true){
+	oInput[i].checked=true;
+	}else{
+	oInput[i].checked=false;
+	}
+	} 
 }

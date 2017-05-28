@@ -256,5 +256,24 @@ public class CartDaoImpl extends HibernateDaoSupport implements cn.mani123.dao.C
 		this.getHibernateTemplate().update(shop);
 		
 	}
+
+
+	@Override
+	//通过商品名搜索商品
+	public List<Product> search(String product_name) {
+		String hql = "from Product where name like '%"+ product_name+ "%'";
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+
+	@Override
+	//通过商品名搜索商品并按价格排序
+	public List<Product> searchByPrice(String product_name) {
+		String hql = "from Product where name like '%"+ product_name+ "%' order by price";
+		List<Product> list = this.getHibernateTemplate().find(hql);
+		System.out.println("搜索到的商品有"+list.size()+"条");
+		return list;
+	}
 	
 }

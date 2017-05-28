@@ -60,4 +60,8 @@ public interface CartDao {
 
 	public void updateShop(Shop shop);
 
+	public List<Product> search(String product_name);
+
+	public List<Product> searchByPrice(String product_name);
+
 }

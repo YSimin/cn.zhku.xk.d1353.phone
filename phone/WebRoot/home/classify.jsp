@@ -677,5 +677,5 @@ text-align:center;
 
 </div>
 </body>
-<script language="JavaScript" src="changecolor.js"></script>
+<script language="JavaScript" src="<%=basePath%>/home/changecolor.js"></script>
 </html>

@@ -41,6 +41,8 @@
 		<result name="get">/cart/cart.jsp</result>
 		<result name="add">/view/failure.jsp</result>
 		<result name="error">/view/failure.jsp</result>
+		<result name="searchProduct">/search/searchProduct.jsp</result>
+		<result name="searchByPrice">/search/searchByPrice.jsp</result>
 		<result name="comment" type="redirectAction">Account_comment.action</result>
 		<result name="confirm" type="redirectAction">Account_waitConfirm.action</result>
 		<result name="clear" type="redirectAction">Cart_get.action</result>		

@@ -42,7 +42,7 @@ public class AccountCtrl extends HttpServlet {
 				
 				msg =id+"删除成功！";
 				System.out.print(msg);
-				rd = request.getRequestDispatcher("../account.jsp");
+				rd = request.getRequestDispatcher("../login/account.jsp");
 			    rd.forward(request, response);
 			}
       }catch(Exception e){

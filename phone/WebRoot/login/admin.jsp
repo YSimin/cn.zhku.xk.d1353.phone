@@ -3,7 +3,6 @@
 <%@ page import="java.util.*" import="java.sql.Connection"
 	import="java.sql.PreparedStatement" import="java.sql.ResultSet"
 	import="cn.edu.zhku.jsj.user.model.Shop"
-	import="cn.edu.zhku.jsj.user.model.User"
 	import="cn.edu.zhku.jsj.Util.ConnectionManager"%>
 <%
 	String path = request.getContextPath();
@@ -15,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>所有店铺信息页面</title>
+<title>管理员页面</title>
 
 <style type="text/css">
 table {
@@ -73,14 +72,14 @@ a {
 </head>
 <body>
 
-	<jsp:include page="/head.jsp" flush='true' />
+	<jsp:include page="/home/head.jsp" flush='true' />
 
 	<div class="first">
-		<h1>小米商城客户信息一览表</h1>
+		<h1>小米商城店铺一览表</h1>
 	</div>
 
 	<%
-		
+		Shop shop = new Shop();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -92,7 +91,7 @@ a {
 			throw new Exception("数据库连接不成功！");
 		}
 
-		String sqlQuery = "Select * from account";
+		String sqlQuery = "Select * from shop";
 
 		ps = conn.prepareStatement(sqlQuery);
 
@@ -108,24 +107,19 @@ a {
 				<td><a href=""><img src="<%=basePath%>/image/touxiang.jpg"></a></td>
 				<td>
 					<ul>
-						<li style="color: #ff5809" class="li"><a href="">账户名：<%=rs.getString(2)%></a></li>
-						<li class="li">地址：<%=rs.getString(4)%></li>
-						<li class="li">生日：<%=rs.getString(5)%></li>
-						<li class="li">性别：<%=rs.getString(6)%></li>
-						<li class="li">email：<%=rs.getString(7)%></li>
-						<li class="li">手机号：<%=rs.getString(8)%></li>
+						<li style="color: #ff5809" class="li"><a href="">店铺名：<%=rs.getString(2)%></a></li>
+						<li class="li">店铺地址：<%=rs.getString(4)%></li>
+						<li class="li">店铺评分：<%=rs.getString(3)%></li>
 					</ul>
-				<td style="width: 120px;"><a
-					href="servlet/AccountCtrl?id=<%=rs.getInt(1)%>"
-					onclick="return confirm('确定要删除这个账户的信息吗？')">删除</a></td>
+				<td style="width: 120px;">
+				<a href="<%=basePath%>/servlet/AdminCtrl?id=<%=rs.getInt(1)%>"
+					onclick="return confirm('确定要删除这家店铺信息吗？')">删除</a></td>
 			</tr>
 			<%
 				}
 			%>
 		</table>
 	</div>
-	
-	
 
 </body>
 </html>

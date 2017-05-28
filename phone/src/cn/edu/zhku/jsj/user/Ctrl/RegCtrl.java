@@ -17,8 +17,7 @@ public class RegCtrl extends HttpServlet {
 	RegService rs = new RegService();
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
-		//设定输入编码格式
+				//设定输入编码格式
 				request.setCharacterEncoding("utf-8");
 				//设定输出编码格式
 				response.setCharacterEncoding("utf-8");
@@ -48,7 +47,7 @@ public class RegCtrl extends HttpServlet {
 			        {
 			        	msg ="errors";
 			        	request.setAttribute("MSG", msg);
-			        	rd = request.getRequestDispatcher("../result.jsp");
+			        	rd = request.getRequestDispatcher("../login/result.jsp");
 			        	rd.forward(request, response);
 			        	
 			        }
@@ -61,16 +60,16 @@ public class RegCtrl extends HttpServlet {
 					        	request.getSession().setAttribute("username",username);
 					        	if(account_id==1)
 								{
-									rd = request.getRequestDispatcher("../together.jsp");
+									rd = request.getRequestDispatcher("../home/together.jsp");
 								    rd.forward(request, response);
 								}
 								else if(account_id==2)
 								{
-									rd = request.getRequestDispatcher("../together.jsp");
+									rd = request.getRequestDispatcher("../home/together.jsp");
 								    rd.forward(request, response);
 								}
 								else{
-								rd = request.getRequestDispatcher("../together.jsp");
+								rd = request.getRequestDispatcher("../home/together.jsp");
 								rd.forward(request, response);
 								}
 					        	
@@ -79,7 +78,7 @@ public class RegCtrl extends HttpServlet {
 			        	 else{
 			        		 msg ="抱歉，注册失败！";
 			        		 request.setAttribute("MSG", msg);
-			        		 rd = request.getRequestDispatcher("../result.jsp");
+			        		 rd = request.getRequestDispatcher("../login/result.jsp");
 			        		 rd.forward(request, response);
 			        	 }
 			        	

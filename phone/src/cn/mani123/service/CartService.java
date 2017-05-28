@@ -33,4 +33,8 @@ public interface CartService {
 	void comment(Integer id, Integer product_id, String score);
 
 	List<Integer> productNum(Integer id, List<Product> product);
+
+	List<Product> search(String product_name);
+
+	List<Product> searchByPrice(String product_name);
 }

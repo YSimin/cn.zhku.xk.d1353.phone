@@ -142,6 +142,18 @@ public class CartServiceImpl implements CartService{
 		}
 		return list;
 	}
+
+	@Override
+	//通过搜索商品名搜索商品
+	public List<Product> search(String product_name) {
+		return cartDao.search(product_name);
+	}
+
+	@Override
+	//通过搜索商品名搜索商品并按价格排序
+	public List<Product> searchByPrice(String product_name) {
+		return cartDao.searchByPrice(product_name);
+	}
 	
 }
 

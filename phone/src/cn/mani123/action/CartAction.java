@@ -1,5 +1,6 @@
 package cn.mani123.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
@@ -176,6 +177,27 @@ public class CartAction extends ActionSupport implements ModelDriven<Account>{
 		else{
 			return "error";
 		}
+	}
+	
+	
+	//搜索商品视图
+	public String search(){
+		String product_name = ServletActionContext.getRequest().getParameter("product_name");
+		if(product_name==null){
+			product_name = (String)ActionContext.getContext().getSession().get("product_name");
+		}
+		List<Product> list = cartService.search(product_name);
+		ActionContext.getContext().getValueStack().set("product", list);
+		ActionContext.getContext().getSession().put("product_name", product_name);//传到value栈中
+		return "searchProduct";
+	}
+	
+	//按价格排序搜索商品视图
+	public String searchByPrice(){
+		String product_name = (String)ActionContext.getContext().getSession().get("product_name");
+		List<Product> list = cartService.searchByPrice(product_name);
+		ActionContext.getContext().getValueStack().set("product", list);
+		return "searchByPrice";
 	}
 	
 	

@@ -42,7 +42,7 @@ public class AdminCtrl  extends HttpServlet {
 				
 				msg =id+"删除成功！";
 				//System.out.print(msg);
-				rd = request.getRequestDispatcher("../admin.jsp");
+				rd = request.getRequestDispatcher("../login/admin.jsp");
 			    rd.forward(request, response);
 			}
       }catch(Exception e){

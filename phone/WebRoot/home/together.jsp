@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>合并页面</title>
+<title>首页</title>
 </head>
 <body> 
-<jsp:include page="/head.jsp" flush='true'/>   
-<jsp:include page="/classify.jsp" flush='true'/>   
+<jsp:include page="/home/head.jsp" flush='true'/>   
+<jsp:include page="/home/classify.jsp" flush='true'/>   
 </body>
 </html>

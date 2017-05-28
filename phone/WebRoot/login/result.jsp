@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>出错啦！</title>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 </head>
 <body>
 
@@ -16,10 +22,10 @@
 		
 	<%if (msg == "error") {%>
 		alert("对不起，用户名或者密码不正确");
-		window.location.href = "../login.jsp";
+		window.location.href = "<%=basePath%>/login/login.jsp";
 	<%} else if (msg == "errors") {%>
 		alert("抱歉，该用户名已经被注册！");
-		window.location.href = "../login.jsp";
+		window.location.href = "<%=basePath%>/login/login.jsp";
 	<%} else {
 			}%>
 		
